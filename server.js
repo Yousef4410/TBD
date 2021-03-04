@@ -2,7 +2,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
+const mongoose = require("mongoose");
 const uri = process.env.MONGODB_URI;
+
+const { MONGODB } = require("./config.js");
 
 app.use(express.json());
 
