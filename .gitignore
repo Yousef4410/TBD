@@ -1,3 +1,2 @@
 node_modules
-# for security reason, delete config.js from repo after we finish the app
-# config.js
+config.js
