@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const MongoClient = require("mongodb").MongoClient;
 
 // relative imports
+
 // db uri, mongodb connection string
 const uri = process.env.MONGODB_URI;
 
@@ -14,6 +15,8 @@ const port = process.env.PORT || "5000";
 app.use(cors());
 // body parser included in express
 app.use(express.json());
+// handle form submissions / urlencoded data
+app.use(express.urlencoded({ extended: false }));
 
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 const connection = mongoose.connection;
@@ -24,5 +27,8 @@ connection.once("open", () => {
 app.get("/", (req, res) => {
   res.send("Hello world");
 });
+
+const usersRouter = require("./routes/users");
+app.use("/users", usersRouter);
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
