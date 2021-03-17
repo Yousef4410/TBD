@@ -1,7 +1,10 @@
-import { AppBar, Toolbar, Typography, Button, IconButton } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import { blueGrey } from '@material-ui/core/colors';
+import { useAuth0 } from '@auth0/auth0-react';
+import LoginButton from './LoginButton';
+import LogoutButton from './LogoutButton';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -18,7 +21,11 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-  const a = () =>{alert("Hello, World")};
+const AuthButton = () => {
+  const { isAuthenticated } = useAuth0();
+
+  return isAuthenticated ? <LogoutButton/> : <LoginButton/>;
+}
 
 export function Navbar() {
   const classes = useStyles();
@@ -33,7 +40,7 @@ export function Navbar() {
           <Typography variant="h6" className={classes.title}>
             TradeU
           </Typography>
-          <Button color={blueGrey[50]} onClick={() => {alert("Hello, World")}}>Login</Button>
+          <AuthButton/>
         </Toolbar>
       </AppBar>
     </div>
