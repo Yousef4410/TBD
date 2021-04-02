@@ -16,8 +16,15 @@ const userSchema = new Schema({
     unique: true,
     lowercase: true,
   },
-  // TODO: is verified
-  // TODO: avatar
+  isVerified: {
+    type: Boolean,
+    required: true,
+    default:false,
+  },
+  avatar:{
+    data: Buffer,
+    contentType: String,
+  },
   createdAt: {
     type: Date,
     required: true,
