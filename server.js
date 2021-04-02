@@ -54,8 +54,8 @@ app.get("/", (req, res) => {
   res.send("Hello world");
 });
 
-//const usersRouter = require("./routes/users");
-//app.use("/users", usersRouter);
+const usersRouter = require("./routes/users");
+app.use("/users", usersRouter);
 
 const postsRouter = require("./routes/posts");
 app.use("/posts",postsRouter);

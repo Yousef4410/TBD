@@ -101,7 +101,7 @@ router.get("/login", async (req, res) => {
 });
 
 // update user profile
-router.patch("/:id", jwtCheck(), getUser, async (req, res) => {
+/*router.patch("/:id", jwtCheck(), getUser, async (req, res) => {
   if (req.body.username != null) {
     res.user.username = req.body.name;
   }
@@ -122,6 +122,7 @@ router.patch("/:id", jwtCheck(), getUser, async (req, res) => {
     res.status(400).json({ msg: err.message });
   }
 });
+*/
 
 // get user profile
 async function getUser(req, res, next) {

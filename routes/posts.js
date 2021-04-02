@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const PM = require('../models/Post.js');
+const Post = require('../models/Post');
 
- router.get('/', async (req,res) => {
+// get all posts
+ router.get('/get', async (req,res) => {
   try{
-    const postMessages = await PM.PostMessage.find();
+    const postMessages = await Post.find();
     res.status(200).json(postMessages);
   }
   catch(error) {
@@ -12,7 +13,13 @@ const PM = require('../models/Post.js');
 }
 });
 
- router.post('/', (req, res) => {
+ router.post('/', async (req, res) => {
+   try{
+     const postMessages = await PM.Posts;
+   }
+   catch(error){
+     res.status(404).json({message:error.message});
+   }
     res.send('Post Creation');
 });
 
