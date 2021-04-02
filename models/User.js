@@ -13,7 +13,11 @@ const userSchema = new Schema({
   email: {
     type: String,
     required: true,
+    unique: true,
+    lowercase: true,
   },
+  // TODO: is verified
+  // TODO: avatar
   createdAt: {
     type: Date,
     required: true,

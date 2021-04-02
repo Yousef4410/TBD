@@ -1,18 +1,17 @@
-const jwt = require("jsonwebtoken");
+const jwt = require("express-jwt");
+const jwks = require("jwks-rsa");
+const axios = require("axios");
 
-const { SECRET_KEY } = require("../config.js");
-
-module.exports = (context) => {
-  const authHeader = context.req.headers.authorization;
-
-  if (authHeader) {
-    const token = authHeader.split("Bearer ")[1];
-    if (token) {
-      try {
-        const user = jwt.verify(token, SECRET_KEY);
-        return user;
-      } catch (err) {}
-    }
-    
-  }
+module.exports = () => {
+  jwt({
+    secret: jwks.expressJwtSecret({
+      cache: true,
+      rateLimit: true,
+      jwksRequestsPerMinute: 5,
+      jwksUri: "https://dev-smzgyb-n.us.auth0.com/.well-known/jwks.json",
+    }),
+    audience: "check-auth-api",
+    issuer: "https://dev-smzgyb-n.us.auth0.com/",
+    algorithms: ["RS256"],
+  });
 };

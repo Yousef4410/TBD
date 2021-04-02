@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+// const morgan = require("morgan");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const { auth } = require("express-openid-connect");
@@ -23,10 +24,12 @@ if (process.env.NODE_ENV === "production") {
 }
 
 app.use(cors());
+// app.use(morgan("dev"));
 // body parser included in express
 app.use(express.json());
 // handle form submissions / urlencoded data
 app.use(express.urlencoded({ extended: false }));
+app.use;
 
 app.use(
   auth({
@@ -50,7 +53,7 @@ app.get("/", (req, res) => {
   res.send("Hello world");
 });
 
-// const usersRouter = require("./routes/users");
-// app.use("/users", usersRouter);
+const usersRouter = require("./routes/users");
+app.use("/users", usersRouter);
 
 app.listen(port, () => console.log(`Server running on port ${port}`));

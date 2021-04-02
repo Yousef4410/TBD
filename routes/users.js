@@ -1,15 +1,14 @@
 const express = require("express");
 const router = express.Router();
-// KeyCloak
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
 
 const User = require("../models/User");
 const {
   validateRegisterInput,
   validateLoginInput,
 } = require("../util/validators");
-const { SECRET_KEY } = require("../config.js");
+const jwtCheck = require("../util/check-auth");
+const checkAuth = require("../util/check-auth");
 
 // get all users
 router.get("/", async (req, res) => {
@@ -101,8 +100,8 @@ router.get("/login", async (req, res) => {
   res.json(res.user);
 });
 
-// update
-router.patch("/:id", getUser, async (req, res) => {
+// update user profile
+router.patch("/:id", jwtCheck(), getUser, async (req, res) => {
   if (req.body.username != null) {
     res.user.username = req.body.name;
   }
@@ -111,6 +110,10 @@ router.patch("/:id", getUser, async (req, res) => {
   }
   if (req.body.email != null) {
     res.user.email = req.body.email;
+    req.user.isVerified = false;
+  }
+  if (req.body.avatar != null) {
+    req.user.avatar = req.body.avatar;
   }
   try {
     const updated = await res.user.save();
@@ -120,16 +123,7 @@ router.patch("/:id", getUser, async (req, res) => {
   }
 });
 
-// delete
-router.delete("/:id", getUser, async (req, res) => {
-  try {
-    await res.user.remove();
-    res.json({ msg: "User Deleted" });
-  } catch (err) {
-    res.status(500).json({ msg: err.message });
-  }
-});
-
+// get user profile
 async function getUser(req, res, next) {
   let user;
   try {
