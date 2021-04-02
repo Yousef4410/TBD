@@ -22,6 +22,6 @@ const postSchema = new Schema({
   },
 });
 
-const PostMessage = model('PostMessage',postSchema);
+const PostMessage = model('Posts',postSchema);
 
 module.exports = PostMessage;
