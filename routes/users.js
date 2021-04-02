@@ -101,7 +101,7 @@ router.get("/login", async (req, res) => {
 });
 
 // update user profile
-router.patch("/:id", jwtCheck(), getUser, async (req, res) => {
+router.patch("/:id", getUser, async (req, res) => {
   if (req.body.username != null) {
     res.user.username = req.body.name;
   }
