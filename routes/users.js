@@ -138,6 +138,17 @@ async function getUser(req, res, next) {
   next();
 }
 
+//delete user
+router.delete('/del/:id', getUser, async (req, res) =>
+{
+  try {
+    const deleted = await res.user.remove();
+    res.json(deleted);
+  } catch (err) {
+    res.status(400).json({msg:err.message});
+  }
+});
+
 function generateToken(user) {
   return jwt.sign(
     {
