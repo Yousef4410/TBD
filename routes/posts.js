@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Post = require('../models/Post');
-const validatePostInput = require("../util/validators");
+const {validatePostInput} = require("../util/post_valid");
 
 // get all posts
  router.get('/get', async (req,res) => {
