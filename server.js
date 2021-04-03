@@ -43,6 +43,7 @@ app.use(
   })
 );
 
+
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 const connection = mongoose.connection;
 connection.once("open", () => {
@@ -55,5 +56,8 @@ app.get("/", (req, res) => {
 
 const usersRouter = require("./routes/users");
 app.use("/users", usersRouter);
+
+const postsRouter = require("./routes/posts");
+app.use("/posts",postsRouter);
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
