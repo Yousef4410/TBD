@@ -30,14 +30,11 @@ const {validatePostInput} = require("../util/post_valid");
    });
    try{
      const newPost = await post.save();
-     res.status(201).json({
-       ...newPost._doc,
-     })
+     res.status(201).json(newPost);
    }
    catch(error){
      res.status(404).json({message:error.message});
    }
-    res.send('Post Creation');
 });
 
 module.exports = router;
