@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Post = require('../models/Post');
+const validatePostInput = require("../util/validators");
 
 // get all posts
  router.get('/get', async (req,res) => {
@@ -13,9 +14,25 @@ const Post = require('../models/Post');
 }
 });
 
- router.post('/', async (req, res) => {
+// create posts
+ router.post('/create', async (req, res) => {
+   let { title, description, price } = req.body;
+   const {valid, errors} = validatePostInput(
+     title,
+     description,
+     price
+   );
+
+   const post = new Post({
+     title: title,
+     description: description,
+     price: price,
+   });
    try{
-     const postMessages = await Post;
+     const newPost = await post.save();
+     res.status(201).json({
+       ...newPost._doc,
+     })
    }
    catch(error){
      res.status(404).json({message:error.message});
