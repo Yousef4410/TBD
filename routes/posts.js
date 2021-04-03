@@ -15,7 +15,7 @@ const Post = require('../models/Post');
 
  router.post('/', async (req, res) => {
    try{
-     const postMessages = await PM.Posts;
+     const postMessages = await Post;
    }
    catch(error){
      res.status(404).json({message:error.message});
