@@ -66,7 +66,7 @@ export function Background() {
           <Button 
             variant='contained' 
             className={classes.btn}
-            onClick={() => loginWithRedirect()}
+            onClick={() => loginWithRedirect({screen_hint: 'signup'})}
             >Join Now</Button>
         </div>
     )

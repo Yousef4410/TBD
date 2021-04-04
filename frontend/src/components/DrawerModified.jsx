@@ -7,8 +7,9 @@ import {
     ListItemText,
     Drawer
  } from '@material-ui/core'
- import { makeStyles } from '@material-ui/core/styles'
-import { useHistory } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles'
+import { useHistory } from 'react-router-dom'
+import { useAuth0 } from '@auth0/auth0-react'
 
  const useStyles = makeStyles((theme) => ({
     list: {
@@ -20,6 +21,7 @@ import { useHistory } from 'react-router-dom';
   }));
 
 export function DrawerModified() {
+    const { logout } = useAuth0();
     const classes = useStyles();
     const [state, setState] = React.useState(false)
     const history = useHistory();
@@ -38,7 +40,8 @@ export function DrawerModified() {
         text: 'My Items',
         onClick: () => history.push('/items')
     }, {
-        text: 'Log Out'
+        text: 'Log Out',
+        onClick: () => logout({returnTo: window.location.origin})
     }
     ];
 
