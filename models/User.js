@@ -19,9 +19,9 @@ const userSchema = new Schema({
   isVerified: {
     type: Boolean,
     required: true,
-    default:false,
+    default: false,
   },
-  avatar:{
+  avatar: {
     data: Buffer,
     contentType: String,
   },
