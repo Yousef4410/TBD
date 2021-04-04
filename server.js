@@ -47,7 +47,7 @@ connection.once("open", () => {
 });
 
 app.get("/", (req, res) => {
-  res.send("Hello world");
+  res.send("Testing");
 });
 
 // const usersRouter = require("./routes/users");

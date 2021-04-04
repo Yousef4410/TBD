@@ -1,10 +1,13 @@
+// How to show Landing page when logged out but Marketplace when logged in?
+// Need to put our logo image instead of typography
+
 import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
-import { blueGrey } from '@material-ui/core/colors';
 import { useAuth0 } from '@auth0/auth0-react';
 import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
+import { Button } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -12,13 +15,18 @@ const useStyles = makeStyles((theme) => ({
     },
     menuButton: {
       marginRight: theme.spacing(2),
+      backgroundColor: 'primary',
     },
     title: {
       flexGrow: 1,
+      color: '#ffff'
     },
     customToolbar: {
-      background: blueGrey[100],
+      background: '#334B68',
     },
+    aboutBtn: {
+      color: '#fff',
+    }
   }));
 
 const AuthButton = () => {
@@ -34,15 +42,17 @@ export function Navbar() {
     <div className={classes.root}>
       <AppBar position="static" className={classes.customToolbar}>
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
           <Typography variant="h6" className={classes.title}>
             TradeU
           </Typography>
+          <Button className={classes.aboutBtn}>About</Button>
           <AuthButton/>
         </Toolbar>
       </AppBar>
     </div>
   );
 }
+
+// <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+//  <MenuIcon />
+// </IconButton>
