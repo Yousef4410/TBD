@@ -13,6 +13,17 @@ const userSchema = new Schema({
   email: {
     type: String,
     required: true,
+    unique: true,
+    lowercase: true,
+  },
+  isVerified: {
+    type: Boolean,
+    required: true,
+    default:false,
+  },
+  avatar:{
+    data: Buffer,
+    contentType: String,
   },
   createdAt: {
     type: Date,
