@@ -11,6 +11,7 @@ import './App.css';
 import React, { useEffect } from 'react'
 import { Marketplace } from './pages/Marketplace'
 import { Landing } from './pages/Landing'
+import { About } from './pages/About'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { MarketNav } from './components/MarketNav'
 import { Auth0Context, useAuth0 } from '@auth0/auth0-react'
@@ -41,6 +42,7 @@ function App() {
       <Switch>
         <Route path='/' exact component={Landing} />
         <Route path='/marketplace' exact component={Marketplace} />
+        <Route path='/about' exact component={About} />
       </Switch>
     </>
   );
