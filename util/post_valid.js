@@ -1,8 +1,4 @@
-module.exports.validatePostInput = (
-  title,
-  description,
-  price
-) => {
+module.exports.validatePostInput = (title, description, price) => {
   const errors = {};
   if (title.trim() === "") {
     errors.title = "Title must not be empty";
@@ -11,9 +7,8 @@ module.exports.validatePostInput = (
     errors.description = "Description must not be empty";
   }
   if (price === "") {
-    errors.price = "Password must not be empty";
+    errors.price = "Price must not be empty";
   }
-
 
   return {
     errors,

@@ -2,7 +2,7 @@ const jwt = require("express-jwt");
 const jwks = require("jwks-rsa");
 const axios = require("axios");
 
-module.exports = () => {
+module.exports = (req, res, next) => {
   jwt({
     secret: jwks.expressJwtSecret({
       cache: true,
@@ -14,4 +14,6 @@ module.exports = () => {
     issuer: "https://dev-smzgyb-n.us.auth0.com/",
     algorithms: ["RS256"],
   });
+
+  next();
 };
