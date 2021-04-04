@@ -12,7 +12,8 @@ import {
 import { makeStyles } from '@material-ui/core/styles'
 import MenuIcon from '@material-ui/icons/Menu'
 import { Button } from '@material-ui/core'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { DrawerModified } from './DrawerModified'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -39,32 +40,40 @@ const useStyles = makeStyles((theme) => ({
 
 export function MarketNav() {
   const classes = useStyles();
-  const [state, setState] = React.useState(false)
+  // const [state, setState] = React.useState(false)
 
-  const history = useHistory()
-
-  const toggleDrawer = (open) => (event) => {
-    setState(open);
-  };
+  // const toggleDrawer = (open) => (event) => {
+  //   setState(open);
+  // };
   
+//   const itemsList = [{
+//     text: 'Home'
+//   }, {
+//     text: 'My Profile'
+//   }, {
+//     text: 'My Items'
+//   }, {
+//     text: 'Log Out'
+//   }
+// ];
   // Need to connect the items (objects) to their pages!!!
   // using route 
-  const list = (anchor) => (
-    <div
-      className={classes.list}
-      role="presentation"
-      onClick={toggleDrawer(false)}
-      onKeyDown={toggleDrawer(false)}
-    >
-      <List>
-        {['Home', 'My Profile', 'My Items', 'Log Out'].map((text, index) => (
-          <ListItem button key={text} onClick={() => history.push('/home')}>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
+  // const list = () => (
+  //   <div
+  //     className={classes.list}
+  //     role="presentation"
+  //     onClick={toggleDrawer(false)}
+  //     onKeyDown={toggleDrawer(false)}
+  //   >
+  //     <List>
+  //       {itemsList.map((item, index) => (
+  //         <ListItem button key={item}>
+  //           <ListItemText primary={item} />
+  //         </ListItem>
+  //       ))}
+  //     </List>
+  //   </div>
+  // );
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.customToolbar}>
@@ -75,7 +84,8 @@ export function MarketNav() {
             </Link>
           </Typography>
           <Button>Name here</Button>
-        <IconButton 
+          <DrawerModified/>
+        {/* <IconButton 
         edge="start" 
         className={classes.menuButton} 
         color="inherit" 
@@ -84,7 +94,7 @@ export function MarketNav() {
             <Drawer anchor={'right'} open={state} onClose={toggleDrawer(false)}>
             {list()}
           </Drawer>
-        </IconButton>
+        </IconButton> */}
         </Toolbar>
       </AppBar>
     </div>
