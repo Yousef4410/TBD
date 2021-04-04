@@ -13,7 +13,6 @@ import { makeStyles } from '@material-ui/core/styles'
 import MenuIcon from '@material-ui/icons/Menu'
 import { Button } from '@material-ui/core'
 import { Link, useHistory } from 'react-router-dom'
-// How do I use <Link>
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -34,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
         width: 250, 
     },
     fullList: {
-        width: 'auto' // what does this mean?
+        width: 'auto'
     }
   }));
 

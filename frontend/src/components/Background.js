@@ -1,6 +1,7 @@
-import { Button, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Button, Typography } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
 import bgImage from '../images/bg.jpg'
+import { useAuth0 } from '@auth0/auth0-react'
 
 const UseStyles = makeStyles((theme) => ({
     root: {
@@ -48,10 +49,12 @@ const UseStyles = makeStyles((theme) => ({
       position: 'absolute',
       width: '20vw',
       backgroundColor: '#0E788F',
+      color: '#fff'
     },
   }));
 
 export function Background() {
+    const { loginWithRedirect } = useAuth0();
     const classes = UseStyles();
 
     return (
@@ -60,7 +63,11 @@ export function Background() {
           <Typography className={classes.header}>Start Buying and Selling!</Typography>
           <Typography className={classes.subheader}>TradeU offers a simple and trusted way to buy and 
             sell locally to college students.</Typography>
-          <Button variant='contained' className={classes.btn}>Join Now</Button>
+          <Button 
+            variant='contained' 
+            className={classes.btn}
+            onClick={() => loginWithRedirect()}
+            >Join Now</Button>
         </div>
     )
 }
