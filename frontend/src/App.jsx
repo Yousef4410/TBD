@@ -18,10 +18,11 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { MarketNav } from './components/MarketNav'
 import { Auth0Context, useAuth0 } from '@auth0/auth0-react'
 import axios from 'axios';
+import ProtectedRoute from './auth/ProtectedRoute';
 
 function App() {
-  const [posts, setPosts] = React.useState({});
-  const { isLoading, error, isAuthenticated, user, getAccessTokenSilently  } = useAuth0()
+  // const [posts, setPosts] = React.useState({});
+  // const { isLoading, error, isAuthenticated, user, getAccessTokenSilently  } = useAuth0()
 
   // useEffect (() => {
   //   async function exampleApiCallOnLoad() {
@@ -42,10 +43,10 @@ function App() {
       <br/> */}
       <Switch>
         <Route path='/' exact component={Landing} />
-        <Route path='/marketplace' exact component={Marketplace} />
+        <ProtectedRoute path='/marketplace' exact component={Marketplace} />
         <Route path='/about' exact component={About} />
-        <Route path='/profile' exact component={Profile} />
-        <Route path='/items' exact component={Items} />
+        <ProtectedRoute path='/profile' exact component={Profile} />
+        <ProtectedRoute path='/items' exact component={Items} />
       </Switch>
     </>
   );
