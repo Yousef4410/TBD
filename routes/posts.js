@@ -32,5 +32,13 @@ router.post("/create", async (req, res) => {
 });
 
 // delete posts
+router.delete("/del/:id", getUser, async (req, res) => {
+  try {
+    await res.user.remove();
+    res.json({ message: "Post deleted" });
+  } catch (err) {
+    res.status(400).json({ msg: err.message });
+  }
+});
 
 module.exports = router;
