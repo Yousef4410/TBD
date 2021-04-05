@@ -20,6 +20,14 @@ const postSchema = new Schema({
     required: true,
     default: Date.now(),
   },
+  createdBy: {
+    type: String,
+    required: true,
+  }
+  image: {
+    data: Buffer,
+    contentType: String,
+  },
 });
 
 const Posts = model('Posts',postSchema);

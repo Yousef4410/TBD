@@ -15,13 +15,15 @@ router.get("/get", async (req, res) => {
 
 // create posts
 router.post("/create", async (req, res) => {
-  let { title, description, price } = req.body;
+  let { title, description, price, user} = req.body;
   const { valid, errors } = validatePostInput(title, description, price);
 
   const post = new Post({
     title: title,
     description: description,
     price: price,
+    user: user,
+
   });
   try {
     const newPost = await post.save();
