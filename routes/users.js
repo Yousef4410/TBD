@@ -11,15 +11,15 @@ const jwtCheck = require("../util/check-auth");
 
 // HANDLED BY AUTH0
 
-// // get all users
-// router.get("/", async (req, res) => {
-//   try {
-//     const users = await User.find();
-//     res.json(users);
-//   } catch (err) {
-//     res.status(500).json({ msg: err.message });
-//   }
-// });
+// get all users
+router.get("/", async (req, res) => {
+  try {
+    const users = await User.find();
+    res.json(users);
+  } catch (err) {
+    res.status(500).json({ msg: err.message });
+  }
+});
 
 // // register
 // router.post("/register", async (req, res) => {
@@ -124,11 +124,21 @@ router.patch("/:id", jwtCheck, getUser, async (req, res) => {
   }
 });
 
+// get user profile
+// exclude password only
+router.get("/:id", jwtCheck, getUser, async (req, res) => {
+  try {
+    res.json(res.user);
+  } catch (err) {
+    res.status(500).json({ msg: err.message });
+  }
+});
+
 // get user profile middleware
 async function getUser(req, res, next) {
   let user;
   try {
-    user = await User.findById(req.params.id);
+    user = await User.findById(req.params.id).select("-password");
     if (user == null) {
       return res.status(404).json({ msg: "Cannot find user" });
     }
