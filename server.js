@@ -27,7 +27,6 @@ app.use(cors());
 app.use(express.json());
 // handle form submissions / urlencoded data
 app.use(express.urlencoded({ extended: false }));
-app.use;
 
 app.use(
   auth({

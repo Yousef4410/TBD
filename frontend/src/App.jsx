@@ -9,40 +9,45 @@
 
 import './App.css';
 import React, { useEffect } from 'react'
-import { Background } from './components/Background'
-import { Navbar } from './components/Navbar'
 import { Marketplace } from './pages/Marketplace'
+import { Landing } from './pages/Landing'
+import { About } from './pages/About'
+import { Profile } from './pages/Profile'
+import { Items } from './pages/Items'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { MarketNav } from './components/MarketNav';
+import { MarketNav } from './components/MarketNav'
+import { Auth0Context, useAuth0 } from '@auth0/auth0-react'
+import axios from 'axios';
+import ProtectedRoute from './auth/ProtectedRoute';
 
-// Need to do a bunch of routing here.
-// let span = 1
 function App() {
-  console.log('hello')
-  const[span, setSpan] = React.useState(1)
-  const span2 = React.useRef(1)
+  // const [posts, setPosts] = React.useState({});
+  // const { isLoading, error, isAuthenticated, user, getAccessTokenSilently  } = useAuth0()
 
-  useEffect (() => {
-    console.log('inside')
-  }, [span2.current]) 
+  // useEffect (() => {
+  //   async function exampleApiCallOnLoad() {
+  //     const token = await getAccessTokenSilently();
+  //     console.log(token)
+  //     const options = { headers: { 'Authorization': `Bearer ${token}`}}
+  //     const apiResult = await axios.get('http://localhost:5000/get', options);
+  //     setPosts(apiResult.data);
+  //   }
+  //   exampleApiCallOnLoad();
+  //   console.log('inside')
+  // }, [getAccessTokenSilently])
 
+  // console.log(isLoading, error, isAuthenticated, user)
   return (
     <>
-    <Router>
-      <MarketNav />
-      <span onClick={() => {
-        setSpan(span + 1)
-        span2.current = span2.current + 1
-        console.log(span2.current)
-        console.log('hi')
-      }}>{ span }</span>
+      {/* <span>{JSON.stringify(posts)}</span>
+      <br/> */}
       <Switch>
-        <Route path='/home'>
-          <span>This is home</span>
-        </Route>
-        <Route path='/' exact />
+        <Route path='/' exact component={Landing} />
+        <ProtectedRoute path='/marketplace' exact component={Marketplace} />
+        <Route path='/about' exact component={About} />
+        <ProtectedRoute path='/profile' exact component={Profile} />
+        <ProtectedRoute path='/items' exact component={Items} />
       </Switch>
-      </Router>
     </>
   );
 }
