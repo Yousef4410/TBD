@@ -1,5 +1,4 @@
 const { model, Schema, Mongoose } = require("mongoose");
-const Post = require("../models/Post");
 
 const postSchema = new Schema({
   title: {
@@ -37,9 +36,9 @@ const postSchema = new Schema({
   image: {
     data: Buffer,
     contentType: String,
-  }
+  },
 });
 
-const Posts = model('Posts',postSchema);
+const Post = model("Post", postSchema);
 
-module.exports = Posts;
+module.exports = Post;

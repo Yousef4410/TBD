@@ -1,5 +1,4 @@
 const { model, Schema, Mongoose } = require("mongoose");
-const User = require("../models/User");
 
 const userSchema = new Schema({
   username: {
@@ -25,6 +24,12 @@ const userSchema = new Schema({
     data: Buffer,
     contentType: String,
   },
+  posts: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Post",
+    },
+  ],
   createdAt: {
     type: Date,
     required: true,

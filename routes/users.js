@@ -1,15 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const bcrypt = require("bcryptjs");
+// const bcrypt = require("bcryptjs");
 
 const User = require("../models/User");
-const {
-  validateRegisterInput,
-  validateLoginInput,
-} = require("../util/validators");
+// const {
+//   validateRegisterInput,
+//   validateLoginInput,
+// } = require("../util/validators");
 const jwtCheck = require("../util/check-auth");
-
-// HANDLED BY AUTH0
 
 // get all users
 router.get("/", async (req, res) => {
@@ -20,6 +18,8 @@ router.get("/", async (req, res) => {
     res.status(500).json({ msg: err.message });
   }
 });
+
+// HANDLED BY AUTH0
 
 // // register
 // router.post("/register", async (req, res) => {
