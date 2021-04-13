@@ -8,7 +8,7 @@
 
 
 import './App.css';
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Marketplace } from './pages/Marketplace'
 import { Landing } from './pages/Landing'
 import { About } from './pages/About'
@@ -21,26 +21,26 @@ import axios from 'axios';
 import ProtectedRoute from './auth/ProtectedRoute';
 
 function App() {
-  // const [posts, setPosts] = React.useState({});
-  // const { isLoading, error, isAuthenticated, user, getAccessTokenSilently  } = useAuth0()
+  const [posts, setPosts] = useState({});
+  const { isLoading, error, isAuthenticated, user, getAccessTokenSilently  } = useAuth0()
 
-  // useEffect (() => {
-  //   async function exampleApiCallOnLoad() {
-  //     const token = await getAccessTokenSilently();
-  //     console.log(token)
-  //     const options = { headers: { 'Authorization': `Bearer ${token}`}}
-  //     const apiResult = await axios.get('http://localhost:5000/get', options);
-  //     setPosts(apiResult.data);
-  //   }
-  //   exampleApiCallOnLoad();
-  //   console.log('inside')
-  // }, [getAccessTokenSilently])
+  useEffect (() => {
+    async function exampleApiCallOnLoad() {
+      const token = await getAccessTokenSilently();
+      console.log(token)
+      const options = { headers: { 'Authorization': `Bearer ${token}`}}
+      const apiResult = await axios.get('http://localhost:5000/get', options);
+      setPosts(apiResult.data);
+    }
+    exampleApiCallOnLoad();
+    console.log('inside')
+  }, [getAccessTokenSilently])
 
-  // console.log(isLoading, error, isAuthenticated, user)
+  console.log(isLoading, error, isAuthenticated, user)
   return (
     <>
-      {/* <span>{JSON.stringify(posts)}</span>
-      <br/> */}
+      <span>{JSON.stringify(posts)}</span>
+      <br/>
       <Switch>
         <Route path='/' exact component={Landing} />
         <ProtectedRoute path='/marketplace' exact component={Marketplace} />

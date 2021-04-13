@@ -67,8 +67,9 @@ export function DrawerModified() {
                 edge="start" 
                 className={classes.menuButton} 
                 color="inherit" 
-                aria-label="menu">
-                <MenuIcon onClick={toggleDrawer(true)} />
+                aria-label="menu"
+                onClick={toggleDrawer(true)}>
+                <MenuIcon />
                 <Drawer anchor={'right'} open={state} onClose={toggleDrawer(false)}>
                 {list()}
                 </Drawer>
