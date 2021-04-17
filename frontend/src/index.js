@@ -3,7 +3,7 @@ import ReactDOM from "react-dom"
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 import { Auth0ProviderWithHistory } from './auth/auth0-provider-with-history'
 
