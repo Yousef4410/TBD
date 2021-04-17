@@ -16,18 +16,17 @@ const useStyles = makeStyles (() => ({
 export function Profile() {
     const [profile, setProfile] = useState({});
     const { user, isLoading, error, isAuthenticated, getAccessTokenSilently } = useAuth0()
-    const { sub, nickname, picture, email } = user
+
+    useEffect(() => {
+        setProfile(user)
+      },[user]);
     
-    useEffect (() => {
-        async function exampleApiCallOnLoad() {
+    async function updateProfile(nickname, email){
         const token = await getAccessTokenSilently();
-        console.log(token)
         const options = { headers: { 'Authorization': `Bearer ${token}`}}
-        const apiResult = await axios.get('http://localhost:5000/sub', options);
+        const apiResult = await axios.post(`http://localhost:5000/users/${profile.sub}`, options); // This line is changed per API call, change sub to API name
         setProfile(apiResult.data);
-        }
-        exampleApiCallOnLoad();
-    }, [getAccessTokenSilently])
+    }
 
 
     const classes = useStyles()
@@ -38,11 +37,11 @@ export function Profile() {
             <main>
                 <div>
                     <Container container maxWidth="lg">
-                        {JSON.stringify(user, null, 2)}
                         <Paper elevation={5}>
-                            <Avatar src={picture} className={classes.avatar}/>
-                            <Typography variant="h4">{nickname}</Typography>
-                            <Typography variant="h5">{email}</Typography>
+                            {JSON.stringify(profile, null,2)}
+                            <Avatar src={profile.picture} className={classes.avatar}/>
+                            <Typography variant="h4">{profile.nickname}</Typography>
+                            <Typography variant="h5">{profile.email}</Typography>
                         </Paper>
                     </Container>
                 </div>
