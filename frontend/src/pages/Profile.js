@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 
-const useStyles = makeStyles (() => ({
+const useStyles = makeStyles(() => ({
     avatar: {
         height: "10em",
         width: "10em",
@@ -19,11 +19,11 @@ export function Profile() {
 
     useEffect(() => {
         setProfile(user)
-      },[user]);
-    
-    async function updateProfile(nickname, email){
+    }, [user]);
+
+    async function updateProfile(nickname, email) {
         const token = await getAccessTokenSilently();
-        const options = { headers: { 'Authorization': `Bearer ${token}`}}
+        const options = { headers: { 'Authorization': `Bearer ${token}` } }
         const apiResult = await axios.post(`http://localhost:5000/users/${profile.sub}`, options); // This line is changed per API call, change sub to API name
         setProfile(apiResult.data)
     }
@@ -33,13 +33,12 @@ export function Profile() {
 
     return (
         <div>
-            <MarketNav/>
+            <MarketNav />
             <main>
                 <div>
                     <Container container maxWidth="lg">
                         <Paper elevation={5}>
-                            {JSON.stringify(profile, null,2)}
-                            <Avatar src={profile.picture} className={classes.avatar}/>
+                            <Avatar src={profile.picture} className={classes.avatar} />
                             <Typography variant="h4">{profile.nickname}</Typography>
                             <Typography variant="h5">{profile.email}</Typography>
                         </Paper>

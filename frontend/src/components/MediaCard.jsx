@@ -10,6 +10,9 @@ import Typography from '@material-ui/core/Typography'
 import { TestData } from '../TestData'
 import { Grid } from '@material-ui/core'
 import me from '../images/me3.jpg'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
+import { useAuth0 } from '@auth0/auth0-react'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -29,47 +32,59 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-export default function MediCaCard() {
+export default function MediaCard() {
   const classes = useStyles();
 
+  const [posts, setPosts] = useState({});
+  const { getAccessTokenSilently } = useAuth0()
+
+  useEffect(() => {
+    (async () => {
+      const token = await getAccessTokenSilently();
+      const options = { headers: { 'Authorization': `Bearer ${token}` } }
+      const apiResult = await axios.get('http://localhost:5000/posts/get', options); // This line is changed per API call, change sub to API name
+      setPosts(await apiResult.data)
+    })()
+  }, [getAccessTokenSilently]);
+
+  // setProfile(apiResult.data)
+
+
   return (
-    <div className={classes.root}>
-      <Grid 
-        direction="row"
-        justify="flex-start"
-        alignItems="center"
-        container spacing={2}>
-          {TestData.map((data, key) => {
-            return (
-              <Grid item xs={12} sm={6} md={3} key={key}>
-                <Card variant="outlined" className={classes.card}>
-                  <CardActionArea>
-                    <CardMedia
-                      className={classes.media}
-                      image={me}
-                    />
-                      <CardContent>
-                      <Typography gutterBottom variant="h5">
-                        {data.title}
-                      </Typography>
-                      <Typography variant="body2" color="textSecondary"s>
-                        {data.contactinfo}
-                      </Typography>
-                      </CardContent>
-                    </CardActionArea>
-                      <CardActions>
-                      <Button size="small" className={classes.btn}>
-                        Share
+    <Grid
+      direction="row"
+      justify="flex-start"
+      container spacing={2}>
+      {posts.map((posts, key) => {
+        return (
+          <Grid item xs={12} sm={6} md={3} key={key}>
+            <Card variant="outlined" className={classes.card}>
+              <CardActionArea>
+                <CardMedia
+                  className={classes.media}
+                  image={me}
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5">
+                    {posts.title}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary" s>
+                    {posts.description}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+              <CardActions>
+                <Button size="small" className={classes.btn}>
+                  Share
                       </Button>
-                      <Button size="small" className={classes.btn}>
-                        Learn More
+                <Button size="small" className={classes.btn}>
+                  Learn More
                       </Button>
-                      </CardActions>
-                </Card>
-              </Grid>
-              );
-          })}
-      </Grid>
-    </div>
+              </CardActions>
+            </Card>
+          </Grid>
+        );
+      })}
+    </Grid>
   );
 }

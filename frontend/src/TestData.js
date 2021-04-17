@@ -1,100 +1,100 @@
 export const TestData = [
     {
-        title: "stinky dude",
+        title: "BALLER",
         description: "this dude stink!",
-        price: "free",
+        price: "priceless",
         picture: "",
         location: "Deez",
         contactinfo: "deez@gmail.com"
     },
     {
-        title: "stinky dude",
+        title: "BALLER",
         description: "this dude stink!",
-        price: "free",
+        price: "priceless",
         picture: "",
         location: "Deez",
         contactinfo: "deez@gmail.com"
-    },{
-        title: "stinky dude",
+    }, {
+        title: "BALLER",
         description: "this dude stink!",
-        price: "free",
+        price: "priceless",
         picture: "",
         location: "Deez",
         contactinfo: "deez@gmail.com"
-    },{
-        title: "stinky dude",
+    }, {
+        title: "KING",
         description: "this dude stink!",
-        price: "free",
+        price: "priceless",
         picture: "",
         location: "Deez",
         contactinfo: "deez@gmail.com"
-    },{
-        title: "stinky dude",
+    }, {
+        title: "KING",
         description: "this dude stink!",
-        price: "free",
+        price: "priceless",
         picture: "",
         location: "Deez",
         contactinfo: "deez@gmail.com"
-    },{
-        title: "stinky dude",
+    }, {
+        title: "KING",
         description: "this dude stink!",
-        price: "free",
+        price: "priceless",
         picture: "",
         location: "Deez",
         contactinfo: "deez@gmail.com"
-    },{
-        title: "stinky dude",
+    }, {
+        title: "BENCH PRESS MASTER",
         description: "this dude stink!",
-        price: "free",
+        price: "priceless",
         picture: "",
         location: "Deez",
         contactinfo: "deez@gmail.com"
-    },{
-        title: "stinky dude",
+    }, {
+        title: "NOT STINKY DUDE",
         description: "this dude stink!",
-        price: "free",
+        price: "priceless",
         picture: "",
         location: "Deez",
         contactinfo: "deez@gmail.com"
-    },{
-        title: "stinky dude",
+    }, {
+        title: "not stinky dude",
         description: "this dude stink!",
-        price: "free",
+        price: "priceless",
         picture: "",
         location: "Deez",
         contactinfo: "deez@gmail.com"
-    },{
-        title: "stinky dude",
+    }, {
+        title: "not stinky dude",
         description: "this dude stink!",
-        price: "free",
+        price: "priceless",
         picture: "",
         location: "Deez",
         contactinfo: "deez@gmail.com"
-    },{
-        title: "stinky dude",
+    }, {
+        title: "not stinky dude",
         description: "this dude stink!",
-        price: "free",
+        price: "priceless",
         picture: "",
         location: "Deez",
         contactinfo: "deez@gmail.com"
-    },{
-        title: "stinky dude",
+    }, {
+        title: "not stinky dude",
         description: "this dude stink!",
-        price: "free",
+        price: "priceless",
         picture: "",
         location: "Deez",
         contactinfo: "deez@gmail.com"
-    },{
-        title: "stinky dude",
+    }, {
+        title: "not stinky dude",
         description: "this dude stink!",
-        price: "free",
+        price: "priceless",
         picture: "",
         location: "Deez",
         contactinfo: "deez@gmail.com"
-    },{
-        title: "stinky dude",
+    }, {
+        title: "not stinky dude",
         description: "this dude stink!",
-        price: "free",
+        price: "priceless",
         picture: "",
         location: "Deez",
         contactinfo: "deez@gmail.com"
