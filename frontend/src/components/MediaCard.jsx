@@ -16,7 +16,6 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     padding: theme.spacing(10),
     marginTop: "5em",
-    minWidth: "200px",
   },
   media: {
     height: "200px",
