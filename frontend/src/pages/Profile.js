@@ -1,22 +1,52 @@
-import { useAuth0 } from '@auth0/auth0-react';
-import { MarketNav } from '../components/MarketNav';
+import { useAuth0 } from '@auth0/auth0-react'
+import { MarketNav } from '../components/MarketNav'
+import { Avatar, Container, Paper, Typography } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+
+const useStyles = makeStyles (() => ({
+    avatar: {
+        height: "10em",
+        width: "10em",
+        margin: "2em",
+    },
+}))
 
 export function Profile() {
+    const [profile, setProfile] = useState({});
+    const { user, isLoading, error, isAuthenticated, getAccessTokenSilently } = useAuth0()
+    const { sub, nickname, picture, email } = user
+    
+    useEffect (() => {
+        async function exampleApiCallOnLoad() {
+        const token = await getAccessTokenSilently();
+        console.log(token)
+        const options = { headers: { 'Authorization': `Bearer ${token}`}}
+        const apiResult = await axios.get('http://localhost:5000/sub', options);
+        setProfile(apiResult.data);
+        }
+        exampleApiCallOnLoad();
+    }, [getAccessTokenSilently])
 
-    const { user } = useAuth0()
-    const { nickname, picture, email } = user
+
+    const classes = useStyles()
 
     return (
         <div>
             <MarketNav/>
-            <h1>Profile</h1>
-            <img src={picture} alt='Profile'></img>
-            <br/>
-            <span>{nickname}</span>
-            <br/>
-            <span>{email}</span>
-            <br/>
-            <span>{JSON.stringify(user)}</span>
+            <main>
+                <div>
+                    <Container container maxWidth="lg">
+                        {JSON.stringify(user, null, 2)}
+                        <Paper elevation={5}>
+                            <Avatar src={picture} className={classes.avatar}/>
+                            <Typography variant="h4">{nickname}</Typography>
+                            <Typography variant="h5">{email}</Typography>
+                        </Paper>
+                    </Container>
+                </div>
+            </main>
         </div>
     )
 }
