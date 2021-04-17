@@ -18,9 +18,8 @@ import { BrowserRouter as Switch, Route } from 'react-router-dom'
 import ProtectedRoute from './auth/ProtectedRoute';
 
 function App() {
-  
-  return (
-    <>
+  return(
+      <>
       <Switch>
         <Route path='/' exact component={Landing} />
         <ProtectedRoute path='/marketplace' exact component={Marketplace} />
