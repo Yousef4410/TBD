@@ -25,7 +25,7 @@ export function Profile() {
         const token = await getAccessTokenSilently();
         const options = { headers: { 'Authorization': `Bearer ${token}`}}
         const apiResult = await axios.post(`http://localhost:5000/users/${profile.sub}`, options); // This line is changed per API call, change sub to API name
-        setProfile(apiResult.data);
+        setProfile(apiResult.data)
     }
 
 
