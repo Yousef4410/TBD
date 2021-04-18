@@ -7,7 +7,7 @@ import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
-import { TestData } from '../TestData'
+// import { TestData } from '../TestData'
 import { Grid } from '@material-ui/core'
 import me from '../images/me3.jpg'
 import { useEffect, useState } from 'react'
@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
 export default function MediaCard() {
   const classes = useStyles();
 
-  const [posts, setPosts] = useState({});
+  const [posts, setPosts] = useState([]);
   const { getAccessTokenSilently } = useAuth0()
 
   useEffect(() => {
