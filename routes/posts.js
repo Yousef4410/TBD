@@ -26,7 +26,7 @@ router.post("/create", async (req, res) => {
     price: price,
     location: location,
     contact: contact,
-    user: user,
+    createdBy: user,
     image: image,
   });
   try {
