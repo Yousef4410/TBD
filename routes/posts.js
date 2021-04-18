@@ -17,7 +17,7 @@ router.get("/get", async (req, res) => {
 
 // create posts
 router.post("/create", async (req, res) => {
-  let { title, description, price, location, contact, user } = req.body;
+  let { title, description, price, location, contact, createdBy , image } = req.body;
   const { valid, errors } = validatePostInput(title, description, price);
 
   const post = new Post({
@@ -26,7 +26,7 @@ router.post("/create", async (req, res) => {
     price: price,
     location: location,
     contact: contact,
-    createdBy: user,
+    createdBy: createdBy,
     image: image,
   });
   try {
