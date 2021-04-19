@@ -8,7 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 // import { TestData } from '../TestData'
-import { Grid } from '@material-ui/core'
+import { Divider, Grid } from '@material-ui/core'
 import me from '../images/me3.jpg'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
@@ -27,7 +27,24 @@ const useStyles = makeStyles(theme => ({
     color: "#2C98F0"
   },
   card: {
-    backgroundColor: "rgba(86,246,228,.10)"
+    backgroundColor: "rgba(86,246,228,.10)",
+    margin: "auto",
+    transition: "0.3s",
+    // boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
+    // "&:hover": {
+    //   boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
+    // },
+    borderRadius: "2em"
+  },
+  divider: {
+    margin: theme.spacing.unit * 3
+  },
+  description: {
+    color: "#00000",
+    marginBottom: "1em"
+  },
+  price: {
+    fontWeight: "bold"
   }
 }))
 
@@ -59,7 +76,8 @@ export default function MediaCard() {
         return (
           <Grid item xs={12} sm={6} md={3}>
             <Card variant="outlined" className={classes.card} key={key}>
-              <CardActionArea>
+              <CardActionArea >
+              {/* href="http://localhost:3000/items" */}
                 <CardMedia
                   className={classes.media}
                   image={me}
@@ -68,8 +86,11 @@ export default function MediaCard() {
                   <Typography gutterBottom variant="h5">
                     {post.title}
                   </Typography>
-                  <Typography variant="body2" color="textSecondary" s>
+                  <Typography className={classes.description} variant="body2">
                     {post.description}
+                  </Typography>
+                  <Typography className={classes.price} variant="body2" color="textSecondary">
+                    $ {post.price}
                   </Typography>
                 </CardContent>
               </CardActionArea>

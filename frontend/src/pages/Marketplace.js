@@ -1,7 +1,7 @@
 // Do I need to make another Navbar component?
 import MediaCard from '../components/MediaCard'
 import { MarketNav } from '../components/MarketNav'
-import { TextField, makeStyles, Grid } from '@material-ui/core'
+import { TextField, makeStyles, Grid, Paper, Typography } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
   search: {
@@ -11,6 +11,20 @@ const useStyles = makeStyles(theme => ({
   cards: {
     flexGrow: 1,
     padding: theme.spacing(5),
+    margin: theme.spacing(5)
+  },
+  bg: {
+    backgroundColor: '#F5F5F5',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    height: '100%',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    objectFit: 'contain',
+    zIndex: '-1',
   }
 }))
 
@@ -36,7 +50,8 @@ export function Marketplace() {
   const classes = useStyles();
   return (
     <>
-      <MarketNav />
+    <MarketNav />
+    <div className={classes.bg}>
       <Grid container justify="center">
         <form className={classes.search} noValidate autoComplete="off">
           <TextField id="outlined-basic" label="Search" variant="outlined" />
@@ -45,6 +60,7 @@ export function Marketplace() {
           <MediaCard />
         </div>
       </Grid>
+    </div>
     </>
   );
 }

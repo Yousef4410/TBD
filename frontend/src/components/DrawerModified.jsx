@@ -32,7 +32,7 @@ export function DrawerModified() {
 
     const itemsList = [{
         text: 'Home',
-        onClick: () => history.push('/marketplace')
+        onClick: () => history.push('/')
     }, {
         text: 'My Profile',
         onClick: () => history.push('/profile')

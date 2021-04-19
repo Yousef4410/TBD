@@ -1,6 +1,7 @@
 import React from 'react'
 import { 
     AppBar, 
+  Avatar, 
     Toolbar, 
     Typography, 
  } from '@material-ui/core'
@@ -33,20 +34,19 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 export function MarketNav() {
-  const classes = useStyles();
+  const classes = useStyles()
   const { user } = useAuth0()
-  const { nickname } = user
 
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.customToolbar}>
         <Toolbar>
-          <Typography variant="h6" className={classes.logo}>
-            <Link to='/marketplace' >
+          <Typography underline="none" variant="h6" className={classes.logo}>
+            <Link to='/' >
               TradeU
             </Link>
           </Typography>
-          <Typography className={classes.menuButton}>{nickname}</Typography>
+          <Typography className={classes.menuButton}>{user.nickname}</Typography>
           <DrawerModified/>
         </Toolbar>
       </AppBar>
