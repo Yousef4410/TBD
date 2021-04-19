@@ -4,6 +4,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import axios from 'axios';
 import { Grid, TextField, makeStyles } from '@material-ui/core'
 import MyCard from '../components/MyCard'
+import PostForm from '../components/PostForm'
 
 const useStyles = makeStyles(theme => ({
     search: {
@@ -43,6 +44,7 @@ export function Items() {
                     <MyCard />
                 </div>
             </Grid>
+            <PostForm />
         </>
     )
 }

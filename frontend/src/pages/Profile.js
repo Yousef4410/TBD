@@ -1,10 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { MarketNav } from '../components/MarketNav'
-<<<<<<< HEAD
 import { Avatar, Container, Paper, Typography, Button } from '@material-ui/core'
-=======
-import { Avatar, Container, Grid, Paper, Typography } from '@material-ui/core'
->>>>>>> 2b0fc42a4404df34070bf24939e139491cad8f99
 import { makeStyles } from '@material-ui/core/styles'
 import DeleteIcon from '@material-ui/icons/Delete'
 import axios from 'axios'
@@ -55,7 +51,6 @@ export function Profile() {
         <div>
             <MarketNav />
             <main>
-<<<<<<< HEAD
                 <div>
                     <Container container maxWidth="lg">
                         <Paper marginTop="5em" align="center" elevation={5}>
@@ -77,15 +72,6 @@ export function Profile() {
 
                     </Container>
                 </div>
-=======
-                <Container justify="center" maxWidth="lg">
-                    <Paper elevation={5} className={classes.bg}>
-                        <Avatar src={profile.picture} className={classes.avatar} />
-                        <Typography variant="h4">{profile.nickname}</Typography>
-                        <Typography variant="h5">{profile.email}</Typography>
-                    </Paper>
-                </Container>
->>>>>>> 2b0fc42a4404df34070bf24939e139491cad8f99
             </main>
         </div>
     )

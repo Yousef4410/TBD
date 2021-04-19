@@ -7,7 +7,6 @@ import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
-// import { TestData } from '../TestData'
 import { Grid } from '@material-ui/core'
 import me from '../images/me3.jpg'
 import { useEffect, useState } from 'react'
@@ -30,10 +29,10 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: "rgba(86,246,228,.10)",
     margin: "auto",
     transition: "0.3s",
-    // boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
-    // "&:hover": {
-    //   boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
-    // },
+    boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
+    "&:hover": {
+      boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
+    },
     borderRadius: "2em"
   },
   divider: {
@@ -65,8 +64,6 @@ export default function MediaCard() {
     })()
   }, [getAccessTokenSilently])
 
-  // setProfile(apiResult.data)
-
   return (
     <Grid
       direction="row"
@@ -76,8 +73,8 @@ export default function MediaCard() {
         return (
           <Grid item xs={12} sm={6} md={3}>
             <Card variant="outlined" className={classes.card} key={key}>
-              <CardActionArea >
-              {/* href="http://localhost:3000/items" */}
+              <CardActionArea>
+                {/* href="http://localhost:3000/items" */}
                 <CardMedia
                   className={classes.media}
                   image={me}
