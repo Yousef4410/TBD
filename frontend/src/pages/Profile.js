@@ -1,6 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { MarketNav } from '../components/MarketNav'
-import { Avatar, Container, Paper, Typography } from '@material-ui/core'
+import { Avatar, Container, Grid, Paper, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
@@ -11,6 +11,9 @@ const useStyles = makeStyles(() => ({
         width: "10em",
         margin: "2em",
     },
+    bg: {
+        backgroundColor: "#000FF"
+    }
 }))
 
 export function Profile() {
@@ -35,15 +38,13 @@ export function Profile() {
         <div>
             <MarketNav />
             <main>
-                <div>
-                    <Container container maxWidth="lg">
-                        <Paper elevation={5}>
-                            <Avatar src={profile.picture} className={classes.avatar} />
-                            <Typography variant="h4">{profile.nickname}</Typography>
-                            <Typography variant="h5">{profile.email}</Typography>
-                        </Paper>
-                    </Container>
-                </div>
+                <Container justify="center" maxWidth="lg">
+                    <Paper elevation={5} className={classes.bg}>
+                        <Avatar src={profile.picture} className={classes.avatar} />
+                        <Typography variant="h4">{profile.nickname}</Typography>
+                        <Typography variant="h5">{profile.email}</Typography>
+                    </Paper>
+                </Container>
             </main>
         </div>
     )

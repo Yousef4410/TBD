@@ -7,7 +7,6 @@ import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
-import { TestData } from '../TestData'
 import { Grid } from '@material-ui/core'
 import me from '../images/me3.jpg'
 import { useEffect, useState } from 'react'
@@ -35,7 +34,7 @@ const useStyles = makeStyles(theme => ({
 export default function MediaCard() {
   const classes = useStyles();
 
-  const [posts, setPosts] = useState({});
+  const [posts, setPosts] = useState({})
   const { getAccessTokenSilently } = useAuth0()
 
   useEffect(() => {
@@ -43,22 +42,22 @@ export default function MediaCard() {
       const token = await getAccessTokenSilently();
       const options = { headers: { 'Authorization': `Bearer ${token}` } }
       const apiResult = await axios.get('http://localhost:5000/posts/get', options); // This line is changed per API call, change sub to API name
+      console.log(apiResult.data)
       setPosts(await apiResult.data)
     })()
-  }, [getAccessTokenSilently]);
+  }, [getAccessTokenSilently])
 
   // setProfile(apiResult.data)
-
 
   return (
     <Grid
       direction="row"
       justify="flex-start"
       container spacing={2}>
-      {posts.map((posts, key) => {
+      {posts.map((post, key) => {
         return (
-          <Grid item xs={12} sm={6} md={3} key={key}>
-            <Card variant="outlined" className={classes.card}>
+          <Grid item xs={12} sm={6} md={3}>
+            <Card variant="outlined" className={classes.card} key={key}>
               <CardActionArea>
                 <CardMedia
                   className={classes.media}
@@ -66,10 +65,10 @@ export default function MediaCard() {
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5">
-                    {posts.title}
+                    {post.title}
                   </Typography>
                   <Typography variant="body2" color="textSecondary" s>
-                    {posts.description}
+                    {post.description}
                   </Typography>
                 </CardContent>
               </CardActionArea>
