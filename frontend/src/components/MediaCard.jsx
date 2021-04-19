@@ -7,12 +7,8 @@ import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
-<<<<<<< HEAD
-import { Grid } from '@material-ui/core'
-=======
 // import { TestData } from '../TestData'
-import { Divider, Grid } from '@material-ui/core'
->>>>>>> 2b0fc42a4404df34070bf24939e139491cad8f99
+import { Grid } from '@material-ui/core'
 import me from '../images/me3.jpg'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
@@ -69,11 +65,8 @@ export default function MediaCard() {
     })()
   }, [getAccessTokenSilently])
 
-<<<<<<< HEAD
-=======
   // setProfile(apiResult.data)
 
->>>>>>> 2b0fc42a4404df34070bf24939e139491cad8f99
   return (
     <Grid
       direction="row"
