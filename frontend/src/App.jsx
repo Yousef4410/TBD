@@ -15,14 +15,19 @@ import { About } from './pages/About'
 import { Profile } from './pages/Profile'
 import { Items } from './pages/Items'
 import { BrowserRouter as Switch, Route } from 'react-router-dom'
-import ProtectedRoute from './auth/ProtectedRoute';
+import ProtectedRoute from './auth/ProtectedRoute'
+import { useAuth0 } from '@auth0/auth0-react'
 
 function App() {
+  const { isAuthenticated } = useAuth0();
+  
   return(
       <>
       <Switch>
-        <Route path='/' exact component={Landing} />
-        <ProtectedRoute path='/marketplace' exact component={Marketplace} />
+        {!isAuthenticated ? 
+        <Route path='/' exact component={Landing} /> :
+        <ProtectedRoute path='/' exact component={Marketplace} /> 
+        }
         <Route path='/about' exact component={About} />
         <ProtectedRoute path='/profile' exact component={Profile} />
         <ProtectedRoute path='/items' exact component={Items} />
