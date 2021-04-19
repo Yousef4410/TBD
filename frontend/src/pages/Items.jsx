@@ -2,8 +2,23 @@ import React, { useEffect, useState } from 'react'
 import { MarketNav } from '../components/MarketNav';
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from 'axios';
+import { Grid, TextField, makeStyles } from '@material-ui/core'
+import MyCard from '../components/MyCard'
+
+const useStyles = makeStyles(theme => ({
+    search: {
+        margin: theme.spacing(2),
+    },
+    cards: {
+        flexGrow: 1,
+        padding: theme.spacing(5),
+    }
+}))
 
 export function Items() {
+    const classes = useStyles()
+
+
     // const [posts, setPosts] = useState({});
     // const { isLoading, error, isAuthenticated, user, getAccessTokenSilently  } = useAuth0()
 
@@ -21,11 +36,13 @@ export function Items() {
 
     // console.log(isLoading, error, isAuthenticated, user)
     return (
-        <div>
+        <>
             <MarketNav />
-            This is the items page
-            <br/>
-            {/* <span>{JSON.stringify(posts)}</span> */}
-        </div>
+            <Grid container justify="center">
+                <div className={classes.cards}>
+                    <MyCard />
+                </div>
+            </Grid>
+        </>
     )
 }

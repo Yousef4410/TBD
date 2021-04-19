@@ -31,8 +31,10 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-export default function MediaCard() {
+export default function MyCard() {
   const classes = useStyles();
+  const { user } = useAuth0([])
+  const splitStr = user.sub.split("|") // {splitStr[1]}
 
   const [posts, setPosts] = useState([]);
   const { getAccessTokenSilently } = useAuth0()
@@ -47,40 +49,43 @@ export default function MediaCard() {
   }, [getAccessTokenSilently]);
 
   return (
-    <Grid
-      direction="row"
-      justify="flex-start"
-      container spacing={2}>
-      {posts.map((posts, key) => {
-        return (
-          <Grid item xs={12} sm={6} md={3} key={key}>
-            <Card variant="outlined" className={classes.card}>
-              <CardActionArea>
-                <CardMedia
-                  className={classes.media}
-                  image={me}
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h5">
-                    {posts.title}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary" s>
-                    {posts.description}
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-              <CardActions>
-                <Button size="small" className={classes.btn}>
-                  Share
+    <>
+      {posts.createdBy === splitStr[1] && (
+        <Grid
+          direction="row"
+          justify="flex-start"
+          container spacing={2}>
+          {posts.map((posts, key) => {
+            return (
+              <Grid item xs={12} sm={6} md={3} key={key}>
+                <Card variant="outlined" className={classes.card}>
+                  <CardActionArea>
+                    <CardMedia
+                      className={classes.media}
+                      image={me}
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h5">
+                        {posts.title}
+                      </Typography>
+                      <Typography variant="body2" color="textSecondary" s>
+                        {posts.description}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                  <CardActions>
+                    <Button size="small" className={classes.btn}>
+                      Share
                 </Button>
-                <Button size="small" className={classes.btn}>
-                  Learn More
+                    <Button size="small" className={classes.btn}>
+                      Learn More
                       </Button>
-              </CardActions>
-            </Card>
-          </Grid>
-        );
-      })}
-    </Grid>
+                  </CardActions>
+                </Card>
+              </Grid>
+            );
+          })}
+        </Grid>
+      )}</>
   );
 }
