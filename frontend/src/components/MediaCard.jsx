@@ -77,7 +77,7 @@ export default function MediaCard() {
                 {/* href="http://localhost:3000/items" */}
                 <CardMedia
                   className={classes.media}
-                  image={me}
+                  image={`data:image/jpeg;base64,${post.image}`}
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5">

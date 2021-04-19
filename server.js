@@ -4,6 +4,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const { auth } = require("express-openid-connect");
 const path = require("path");
+const passport = require("passport");
 
 // relative imports
 
@@ -13,6 +14,11 @@ const uri = process.env.MONGODB_URI;
 const app = express();
 const port = process.env.PORT || 5000;
 
+const server = app.listen(port, () => 
+console.log(`Server running on port ${port}`));
+
+const io = require("socket.io").listen(server);
+
 // for production
 // if (process.env.NODE_ENV === "production") {
 //   app.use(express.static("frontend/build"));
@@ -21,6 +27,7 @@ const port = process.env.PORT || 5000;
 //     res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
 //   });
 // }
+
 
 app.use(cors());
 // body parser included in express
@@ -50,10 +57,25 @@ app.get("/", (req, res) => {
   res.send("Testing");
 });
 
+
+// Passport middleware
+app.use(passport.initialize());
+// Passport config
+//require("./config/passport")(passport);
+
+// Assign socket object to every request
+app.use(function (req, res, next) {
+  req.io = io;
+  next();
+});
+
 const usersRouter = require("./routes/users");
 app.use("/users", usersRouter);
 
 const postsRouter = require("./routes/posts");
 app.use("/posts", postsRouter);
 
-app.listen(port, () => console.log(`Server running on port ${port}`));
+const messages = require("./routes/messages");
+app.use("/messages", messages);
+
+

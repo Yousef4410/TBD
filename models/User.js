@@ -24,12 +24,6 @@ const userSchema = new Schema({
     data: Buffer,
     contentType: String,
   },
-  posts: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Post",
-    },
-  ],
   createdAt: {
     type: Date,
     required: true,
@@ -37,4 +31,4 @@ const userSchema = new Schema({
   },
 });
 
-module.exports = model("User", userSchema);
+module.exports = model('User', userSchema);
