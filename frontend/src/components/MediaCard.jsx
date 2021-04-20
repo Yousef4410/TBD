@@ -63,10 +63,7 @@ export default function MediaCard() {
       const token = await getAccessTokenSilently();
       console.log(token);
       const options = { headers: { Authorization: `Bearer ${token}` } };
-      const apiResult = await axios.get(
-        "http://localhost:5000/posts/get",
-        options
-      ); // This line is changed per API call, change sub to API name
+      const apiResult = await axios.get("/posts/get", options); // This line is changed per API call, change sub to API name
       setPosts(await apiResult.data);
     })();
   }, [getAccessTokenSilently]);
