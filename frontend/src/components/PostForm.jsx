@@ -69,12 +69,12 @@ export default function PostForm() {
         <Container component="main" maxWidth="xs">
             <CssBaseline />
             <div className={classes.paper}>
-                <Avatar className={classes.avatar}>
+                {/*<Avatar className={classes.avatar}>
                     <DashboardSharpIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
                     Create a post
-                </Typography>
+                </Typography>}*/}
                 <form
                     id="form"
                     className={classes.form}

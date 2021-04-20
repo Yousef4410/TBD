@@ -1,7 +1,6 @@
 import React from 'react'
 import { 
-    AppBar, 
-  Avatar, 
+    AppBar,  
     Toolbar, 
     Typography, 
  } from '@material-ui/core'

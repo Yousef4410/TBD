@@ -1,10 +1,11 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { MarketNav } from '../components/MarketNav'
-import { Avatar, Container, Paper, Typography, Button } from '@material-ui/core'
+import { Avatar, Container, Paper, Typography, Button, Box } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import DeleteIcon from '@material-ui/icons/Delete'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import Copyright from '../components/Copyright'
 
 const useStyles = makeStyles((theme) => ({
     avatar: {
@@ -32,19 +33,17 @@ export function Profile() {
         setProfile(user)
     }, [user]);
 
-    async function updateProfile(username, email, avatar) {
+    async function getProfile(username, email, avatar) {
         const token = await getAccessTokenSilently();
         const options = { headers: { 'Authorization': `Bearer ${token}` } }
         const apiResult = await axios.post(`http://localhost:5000/users/${profile.sub}`, options); // This line is changed per API call, change sub to API name
         setProfile(apiResult.data)
     }
 
-    async function editForm() {
-
-    }
-
     async function deleteProfile() {
-        // delete user
+        const token = await getAccessTokenSilently();
+        const options = { headers: { 'Authorization': `Bearer ${token}` } }
+        const apiResult = await axios.delete(`http://localhost:5000/${profile.sub}`, options);
     }
 
 
@@ -69,13 +68,16 @@ export function Profile() {
                         >
                             Delete
                         </Button>
-                        <Button onClick={editForm} variant="contained" size="medium" color="primary" className={classes.margin}>
+                        <Button variant="contained" size="medium" color="primary" className={classes.margin}>
                             Edit
                         </Button>
 
                     </Container>
                 </div>
             </main>
+            <Box mt={8}>
+                <Copyright/>
+            </Box>
         </div>
     )
 }
