@@ -15,11 +15,6 @@ const userSchema = new Schema({
     unique: true,
     lowercase: true,
   },
-  isVerified: {
-    type: Boolean,
-    required: true,
-    default: false,
-  },
   avatar: {
     data: Buffer,
     contentType: String,
@@ -31,4 +26,4 @@ const userSchema = new Schema({
   },
 });
 
-module.exports = model('User', userSchema);
+module.exports = model("User", userSchema);
