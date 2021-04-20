@@ -2,6 +2,7 @@ import * as AuthSession from "expo-auth-session";
 import jwtDecode from "jwt-decode";
 import * as React from "react";
 import {
+  ActivityIndicator,
   Alert,
   Button,
   FlatList,
@@ -22,11 +23,13 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
-import { Grid } from "@material-ui/core";
+import { Grid, Tab } from "@material-ui/core";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 /* in-house components */
 import Center from "./components/Center";
-import AuthProvider from "./components/AuthProvider";
+import AuthProvider, { AuthContext } from "./components/AuthProvider";
+import AppTabs from "./components/AppTabs";
 
 // You need to swap out the Auth0 client id and domain with the one from your Auth0 client.
 // In your Auth0 client, you need to also add a url to your authorized redirect urls.
@@ -110,7 +113,7 @@ export default function App() {
         <Button
           title="go to login"
           onPress={() => {
-            navigation.navigate("MarketPlace");
+            navigation.navigate("Login");
           }}
         />
       </Center>
@@ -127,7 +130,11 @@ export default function App() {
       })();
     });
 
-    return <View></View>;
+    return (
+      <View style={styles.navBar}>
+        <AppTabs />
+      </View>
+    );
   };
 
   // "initialRouteName" prop determines the starting screen
@@ -135,7 +142,10 @@ export default function App() {
   return (
     <AuthProvider>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Marketplace">
+        <Stack.Navigator
+          screenOptions={{ header: () => null }}
+          initialRouteName="Marketplace"
+        >
           <Stack.Screen name="Login" component={LoginScreen} />
           <Stack.Screen name="Register" component={RegisterScreen} />
           <Stack.Screen name="Marketplace" component={MarketPlace} />
@@ -174,5 +184,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: "center",
     marginTop: 40,
+  },
+  navBar: {
+    flex: 3,
+    alignContent: "center",
   },
 });
