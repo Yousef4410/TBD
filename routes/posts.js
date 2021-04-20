@@ -78,10 +78,28 @@ router.get("/search/:cat/:inp", async (req, res) =>{
   console.log(queryParam);
   
   try {
-    var postMessages = await Post.find(queryParam);
+    const postMessages = await Post.find(queryParam);
     res.status(200).json(postMessages);
   } catch (err){
     res.status(500).json({msg: err.message});
+  }
+})
+
+router.get("/filter/lth",async (req,res) =>{
+  try{
+    const postMessages = await Post.find({}).sort({price : 1}).collation({locale:"en_US", numericOrdering:true});
+    res.status(200).json(postMessages);
+  }catch(err){
+    res.status(400).json({ msg:err.message})
+  }
+})
+
+router.get("/filter/htl",async (req,res) =>{
+  try{
+    const postMessages = await Post.find({}).sort({price : -1}).collation({locale:"en_US", numericOrdering:true});
+    res.status(200).json(postMessages);
+  }catch(err){
+    res.status(400).json({ msg:err.message})
   }
 })
 
