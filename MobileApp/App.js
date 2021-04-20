@@ -2,10 +2,10 @@ import * as AuthSession from "expo-auth-session";
 import jwtDecode from "jwt-decode";
 import * as React from "react";
 import { Alert, Button, Platform, StyleSheet, Text, View } from "react-native";
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 
-import { Routes } from "./src/Routes";
+import Center from "./components/Center";
 
 // You need to swap out the Auth0 client id and domain with the one from your Auth0 client.
 // In your Auth0 client, you need to also add a url to your authorized redirect urls.
@@ -34,8 +34,8 @@ export default function App() {
       scopes: ["openid", "profile"],
       extraParams: {
         // ideally, this will be a random value
-        nonce: "nonce"
-      }
+        nonce: "nonce",
+      },
     },
     { authorizationEndpoint }
   );
@@ -64,27 +64,49 @@ export default function App() {
     }
   }, [result]);
 
-  
-
   const Stack = createStackNavigator();
 
-  function LoginScreen() {
+  // thanks to ECMAScript 6 (ES6), "object destructuring" is used to
+  // pull the "navigation" key out of the "props" object
+  const LoginScreen = ({ navigation }) => {
     return (
-      <View>
+      <Center>
         <Text>I am a login screen</Text>
-      </View>
+        <Button
+          title="go to register"
+          onPress={() => {
+            navigation.navigate("Register");
+          }}
+        />
+      </Center>
     );
   };
 
+  const RegisterScreen = ({ navigation }) => {
+    return (
+      <Center>
+        <Text>I am a register screen</Text>
+        <Button
+          title="go to login"
+          onPress={() => {
+            navigation.navigate("Login");
+          }}
+        />
+      </Center>
+    );
+  };
+
+  // "initialRouteName" prop determines the starting screen
+  // "initialRouteName" prop points to the "name" prop of a Stack.Screen
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Login" component={LoginScreen}/>
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Register" component={RegisterScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
 
 // LOGIN PAGE JSX
 /*
@@ -109,11 +131,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   title: {
     fontSize: 20,
     textAlign: "center",
-    marginTop: 40
-  }
+    marginTop: 40,
+  },
 });
