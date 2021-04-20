@@ -51,7 +51,7 @@ export function Marketplace() {
       <Grid container justify="center" height="100%">
         {/*<form className={classes.search} noValidate autoComplete="off">
           <TextField fullWidth id="outlined-full-width" label="Search" variant="outlined" />
-  </form>*/}
+          </form>*/}
         <div className={classes.cards}>
           <MediaCard />
         </div>
