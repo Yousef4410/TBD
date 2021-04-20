@@ -1,13 +1,20 @@
 import * as AuthSession from "expo-auth-session";
 import jwtDecode from "jwt-decode";
 import * as React from "react";
-import { Alert, Button, Platform, StyleSheet, Text, View } from "react-native";
+import {
+  Alert,
+  Button,
+  FlatList,
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import axios from 'axios'
-import Center from "./components/Center";
+import axios from "axios";
 import { useEffect, useState } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -17,6 +24,9 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import { Grid } from "@material-ui/core";
 
+/* in-house components */
+import Center from "./components/Center";
+import AuthProvider from "./components/AuthProvider";
 
 // You need to swap out the Auth0 client id and domain with the one from your Auth0 client.
 // In your Auth0 client, you need to also add a url to your authorized redirect urls.
@@ -108,40 +118,30 @@ export default function App() {
   };
 
   const MarketPlace = () => {
+    const [posts, setPosts] = useState([]);
 
-  const [posts, setPosts] = useState([]);
+    useEffect(() => {
+      (async () => {
+        const apiResult = await axios.get("http://localhost:5000/posts/get"); // This line is changed per API call, change sub to API name
+        setPosts(await apiResult.data);
+      })();
+    });
 
-  useEffect(() => {
-    (async () => {
-      const apiResult = await axios.get(
-        "http://localhost:5000/posts/get"
-      ); // This line is changed per API call, change sub to API name
-      setPosts(await apiResult.data);
-    })();
-  });
-
-  return (
-    <Grid container justify="center" height="100%">
-        
-        <div>
-        {JSON.stringify(posts)} 
-        </div>
-      </Grid>
-  );
-
-}
-
+    return <View></View>;
+  };
 
   // "initialRouteName" prop determines the starting screen
   // "initialRouteName" prop points to the "name" prop of a Stack.Screen
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Register" component={RegisterScreen} />
-        <Stack.Screen name="MarketPlace" component={MarketPlace} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <AuthProvider>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Marketplace">
+          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="Register" component={RegisterScreen} />
+          <Stack.Screen name="Marketplace" component={MarketPlace} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </AuthProvider>
   );
 }
 
