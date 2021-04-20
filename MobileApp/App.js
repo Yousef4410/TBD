@@ -17,6 +17,8 @@ const authorizationEndpoint = "https://dev-smzgyb-n.us.auth0.com/authorize";
 const useProxy = Platform.select({ web: false, default: true });
 const redirectUri = AuthSession.makeRedirectUri({ useProxy });
 
+// test commit
+
 export default function App() {
   const [name, setName] = React.useState(null);
 

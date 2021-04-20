@@ -50,6 +50,16 @@ async function getPost(req, res, next) {
   res.user = post;
   next();
 }
+
+router.get("/getUser/:id",async (req, res) => {
+  try {
+    const postMessages = await Post.find({createdBy : `${req.params.id.replace(':','')}`});
+    res.status(200).json(postMessages);
+  } catch (err) {
+    res.status(400).json({ msg: err.message });
+  }
+});
+
 // delete posts
 router.delete("/del/:id", getPost, async (req, res) => {
   try {
@@ -59,5 +69,20 @@ router.delete("/del/:id", getPost, async (req, res) => {
     res.status(400).json({ msg: err.message });
   }
 });
+
+router.get("/search/:cat/:inp", async (req, res) =>{
+  var queryParam = {};
+  var cat = req.params.cat.replace(':','');
+  var input = req.params.inp.replace(':','');
+  queryParam[cat] = { "$regex": input, "$options": "i" };
+  console.log(queryParam);
+  
+  try {
+    var postMessages = await Post.find(queryParam);
+    res.status(200).json(postMessages);
+  } catch (err){
+    res.status(500).json({msg: err.message});
+  }
+})
 
 module.exports = router;
