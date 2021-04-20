@@ -2,6 +2,10 @@ import * as AuthSession from "expo-auth-session";
 import jwtDecode from "jwt-decode";
 import * as React from "react";
 import { Alert, Button, Platform, StyleSheet, Text, View } from "react-native";
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+import { Routes } from "./src/Routes";
 
 // You need to swap out the Auth0 client id and domain with the one from your Auth0 client.
 // In your Auth0 client, you need to also add a url to your authorized redirect urls.
@@ -60,8 +64,31 @@ export default function App() {
     }
   }, [result]);
 
+  
+
+  const Stack = createStackNavigator();
+
+  function LoginScreen() {
+    return (
+      <View>
+        <Text>I am a login screen</Text>
+      </View>
+    );
+  };
+
   return (
-    <View style={styles.container}>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Login" component={LoginScreen}/>
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+
+// LOGIN PAGE JSX
+/*
+<View style={styles.container}>
       {name ? (
         <>
           <Text style={styles.title}>You are logged in, {name}!</Text>
@@ -75,8 +102,7 @@ export default function App() {
         />
       )}
     </View>
-  );
-}
+*/
 
 const styles = StyleSheet.create({
   container: {

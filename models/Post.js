@@ -10,19 +10,16 @@ const postSchema = new Schema({
     required: true,
   },
   price: {
-    type: Number,
+    type: String,
     required: true,
-    unique: true,
   },
   location: {
     type: String,
     required: true,
-    unique: true,
   },
   contact: {
     type: String,
     required: true,
-    unique: true,
   },
   postedAt: {
     type: Date,
