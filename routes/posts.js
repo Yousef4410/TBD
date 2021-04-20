@@ -70,6 +70,19 @@ router.delete("/del/:id", getPost, async (req, res) => {
   }
 });
 
-
+router.get("/search/:cat/:inp", async (req, res) =>{
+  var queryParam = {};
+  var cat = req.params.cat.replace(':','');
+  var input = req.params.inp.replace(':','');
+  queryParam[cat] = { "$regex": input, "$options": "i" };
+  console.log(queryParam);
+  
+  try {
+    var postMessages = await Post.find(queryParam);
+    res.status(200).json(postMessages);
+  } catch (err){
+    res.status(500).json({msg: err.message});
+  }
+})
 
 module.exports = router;
