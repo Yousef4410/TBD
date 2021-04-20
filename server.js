@@ -19,17 +19,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // auth0
-app.use(
-  auth({
-    auth0Logout: true,
-    authRequired: false,
-    issuerBaseURL: process.env.ISSUER_BASE_URL,
-    baseURL: process.env.BASE_URL,
-    clientID: process.env.CLIENT_ID,
-    secret: process.env.SECRET,
-    idpLogout: true,
-  })
-);
+// app.use(
+//   auth({
+//     auth0Logout: true,
+//     authRequired: false,
+//     issuerBaseURL: process.env.ISSUER_BASE_URL,
+//     baseURL: process.env.BASE_URL,
+//     clientID: process.env.CLIENT_ID,
+//     secret: process.env.SECRET,
+//     idpLogout: true,
+//   })
+// );
 
 // connect DB
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
