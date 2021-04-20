@@ -33,17 +33,22 @@ const useStyles = makeStyles(theme => ({
     "&:hover": {
       boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
     },
-    borderRadius: "2em"
+    borderRadius: "1.5em"
   },
   divider: {
-    margin: theme.spacing.unit * 3
+    margin: theme.spacing(3)
   },
   description: {
     color: "#00000",
-    marginBottom: "1em"
+    marginBottom: "1em",
+    fontFamily: "Poppins"
   },
   price: {
-    fontWeight: "bold"
+    fontWeight: "bold",
+    fontFamily: "Poppins"
+  },
+  font: {
+    fontFamily: "Poppins"
   }
 }))
 
@@ -59,7 +64,6 @@ export default function MediaCard() {
       const token = await getAccessTokenSilently();
       const options = { headers: { 'Authorization': `Bearer ${token}` } }
       const apiResult = await axios.get('http://localhost:5000/posts/get', options); // This line is changed per API call, change sub to API name
-      console.log(apiResult.data)
       setPosts(await apiResult.data)
     })()
   }, [getAccessTokenSilently])
@@ -71,8 +75,8 @@ export default function MediaCard() {
       container spacing={2}>
       {posts.map((post, key) => {
         return (
-          <Grid item xs={12} sm={6} md={3}>
-            <Card variant="outlined" className={classes.card} key={key}>
+          <Grid item xs={12} sm={6} md={3} key={key}>
+            <Card variant="outlined" className={classes.card}>
               <CardActionArea>
                 {/* href="http://localhost:3000/items" */}
                 <CardMedia
@@ -80,7 +84,7 @@ export default function MediaCard() {
                   image={`data:image/jpeg;base64,${post.image}`}
                 />
                 <CardContent>
-                  <Typography gutterBottom variant="h5">
+                  <Typography className={classes.font} gutterBottom variant="h5">
                     {post.title}
                   </Typography>
                   <Typography className={classes.description} variant="body2">
@@ -93,11 +97,8 @@ export default function MediaCard() {
               </CardActionArea>
               <CardActions>
                 <Button size="small" className={classes.btn}>
-                  Share
+                  Let's Trade
                 </Button>
-                <Button size="small" className={classes.btn}>
-                  Learn More
-                      </Button>
               </CardActions>
             </Card>
           </Grid>
