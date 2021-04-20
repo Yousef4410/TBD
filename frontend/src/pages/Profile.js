@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
     },
     bg: {
         backgroundColor: "#000FF"
+    },
+    text: {
+        marginBottom: "1em"
     }
 }))
 
@@ -55,8 +58,8 @@ export function Profile() {
                     <Container container maxWidth="lg">
                         <Paper marginTop="5em" align="center" elevation={5}>
                             <Avatar src={profile.picture} className={classes.avatar} />
-                            <Typography variant="h4">{profile.nickname}</Typography>
-                            <Typography variant="h5">{profile.email}</Typography>
+                            <Typography className={classes.text} variant="h4">{profile.nickname}</Typography>
+                            <Typography className={classes.text}variant="h5">{profile.email}</Typography>
                         </Paper>
                         <Button onClick={deleteProfile}
                             variant="contained"
