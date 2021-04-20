@@ -12,19 +12,6 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     padding: theme.spacing(5),
     margin: theme.spacing(5)
-  },
-  bg: {
-    backgroundColor: '#F5F5F5',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    height: '100%',
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    objectFit: 'contain',
-    zIndex: '-1',
   }
 }))
 
@@ -51,7 +38,7 @@ export function Marketplace() {
   return (
     <>
     <MarketNav />
-    <div className={classes.bg}>
+    <div>
       <Grid container justify="center">
         <form className={classes.search} noValidate autoComplete="off">
           <TextField id="outlined-basic" label="Search" variant="outlined" />

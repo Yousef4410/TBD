@@ -10,6 +10,8 @@ import {
 import DashboardSharpIcon from "@material-ui/icons/DashboardSharp"
 import { useForm } from "react-hook-form"
 import SendingData from "./SendingData"
+import { useAuth0 } from "@auth0/auth0-react"
+import { useEffect } from "react"
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -25,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
     form: {
         width: "100%", // Fix IE 11 issue.
         marginTop: theme.spacing(1)
+    },
+    avatar: {
+        background: "#56F6E4"
     }
 }));
 
@@ -32,13 +37,32 @@ export default function PostForm() {
     const classes = useStyles();
     const [data, setData] = useState({});
     const [confirm, setConfirm] = useState(false);
-
+    const { user } = useAuth0([])
+    const splitStr = user.sub.split("|"); // {splitStr[1]}
+    const [base64Img, setBase64Img] = useState({});
     const { handleSubmit, errors } = useForm({
         mode: "onBlur"
     });
     function handleChange(event) {
         setData({ ...data, [event.target.name]: event.target.value });
         setConfirm(false);
+    }
+
+    useEffect(() => {
+        setData({ ...data, createdBy: splitStr[1] })
+        setConfirm(false);
+    }, []);
+
+
+    function _handleReaderLoaded(readerEvt) {
+        let binaryString = readerEvt.target.result;
+        handleChange({
+            target: {
+                name: "image",
+                value: btoa(binaryString)
+            }
+        })
+        setBase64Img(btoa(binaryString));
     }
 
     return (
@@ -57,7 +81,7 @@ export default function PostForm() {
                     noValidate
                     onSubmit={handleSubmit((data) => {
                         setConfirm(true);
-                      })}
+                    })}
                 >
                     <TextField
                         onChange={handleChange}
@@ -123,18 +147,22 @@ export default function PostForm() {
 
 
 
+                    <input
+                        type="file"
+                        name="image"
+                        id="file"
+                        accept=".jpeg, .png, .jpg"
+                        onChange={(e) => {
+                            let file = e.target.files[0];
+                            if (file) {
+                                const reader = new FileReader();
+                                reader.onload = _handleReaderLoaded;
+                                reader.readAsBinaryString(file);
+                            }
+                        }}
+                    />
 
-                   {/* // <input
-                    //     type="file"
-                    //     name="image"
-                    //     id="file"
-                    //     accept=".jpeg, .png, .jpg"
-                    // />
-                   // <input type="submit"/>nput type="submit"/> */}
-
-
-
-                    <SendingData data={data} confirm={confirm}/>
+                    <SendingData data={data} confirm={confirm} />
                 </form>
             </div>
         </Container>

@@ -1,10 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { Button, Box, CircularProgress } from "@material-ui/core";
+import { Button, Box, CircularProgress, makeStyles } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import axios from "axios";
 import { useAuth0 } from '@auth0/auth0-react'
 
+const useStyles = makeStyles({
+  btn: {
+    backgroundColor: "#56F6E4",
+    fontFamily: "Poppins"
+  }
+})
+
 function SendingData(props) {
+  const classes = useStyles()
   const [token, setToken] = useState("");
   const [loading, setLoading] = useState(false);
   const { getAccessTokenSilently } = useAuth0()
@@ -12,10 +20,10 @@ function SendingData(props) {
   console.log("Confirm: " + props.confirm);
 
   useEffect(() => {
-    if (token) {
+
+    if (token && props.confirm) {
       setLoading(true);
-      alert(JSON.stringify(props.data))
-      axios.post("https:localhost:5000/posts/create", props.data, {
+      axios.post("http://localhost:5000/posts/create", props.data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -26,7 +34,7 @@ function SendingData(props) {
           console.log(error);
         })
       }
-  }, [token, props.data]);
+  }, [token, props.confirm, props.data]);
 
   return (
     <div>
@@ -36,7 +44,7 @@ function SendingData(props) {
           endIcon={<AddIcon />}
           variant="contained"
           size="large"
-          color="secondary"
+          className={classes.btn}
           onClick={() => {
             setToken(getAccessTokenSilently());
           }}

@@ -26,10 +26,24 @@ const useStyles = makeStyles(theme => ({
     color: "#2C98F0"
   },
   card: {
-    backgroundColor: "rgba(86,246,228,.10)"
+    backgroundColor: "rgba(86,246,228,.10)",
+    margin: "auto",
+    transition: "0.3s",
+    boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
+    "&:hover": {
+      boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
+    },
+    borderRadius: "2em"
   },
-  text: {
-    align: "center"
+  divider: {
+    margin: theme.spacing(3)
+  },
+  description: {
+    color: "#00000",
+    marginBottom: "1em"
+  },
+  price: {
+    fontWeight: "bold"
   }
 }))
 
@@ -46,7 +60,7 @@ export default function MyCard() {
     (async () => {
       const token = await getAccessTokenSilently();
       const options = { headers: { 'Authorization': `Bearer ${token}` } }
-      const apiResult = await axios.get(`http://localhost:5000/posts/getUser${splitStr[1]}`, options); // This line is changed per API call, change sub to API name
+      const apiResult = await axios.get(`http://localhost:5000/posts/getUser/${splitStr[1]}`, options); // This line is changed per API call, change sub to API name
       setPosts(await apiResult.data)
     })()
   }, [getAccessTokenSilently]);
@@ -55,40 +69,44 @@ export default function MyCard() {
   return (
     <> 
       <Grid
-        direction="row"
-        justify="flex-start"
-        container spacing={2}>
-        {posts.map((posts, key) => {
-          return (
-            <Grid item xs={12} sm={6} md={3} key={key}>
-              <Card variant="outlined" className={classes.card}>
-                <CardActionArea>
-                  <CardMedia
-                    className={classes.media}
-                    image={me}
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5">
-                      {posts.title}
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary">
-                      {posts.description}
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-                <CardActions>
-                  <Button size="small" className={classes.btn}>
-                    Share
-              </Button>
-                  <Button size="small" className={classes.btn}>
-                    Learn More
-                    </Button>
-                </CardActions>
-              </Card>
-            </Grid>
-          );
-        })}
-      </Grid> 
+      direction="row"
+      justify="flex-start"
+      container spacing={2}>
+      {posts.map((post, key) => {
+        return (
+          <Grid item xs={12} sm={6} md={3} key={key}>
+            <Card variant="outlined" className={classes.card}>
+              <CardActionArea>
+                {/* href="http://localhost:3000/items" */}
+                <CardMedia
+                  className={classes.media}
+                  image={`data:image/jpeg;base64,${post.image}`}
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5">
+                    {post.title}
+                  </Typography>
+                  <Typography className={classes.description} variant="body2">
+                    {post.description}
+                  </Typography>
+                  <Typography className={classes.price} variant="body2" color="textSecondary">
+                    $ {post.price}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+              <CardActions>
+                <Button size="small" className={classes.btn}>
+                  Share
+                </Button>
+                <Button size="small" className={classes.btn}>
+                  Learn More
+                      </Button>
+              </CardActions>
+            </Card>
+          </Grid>
+        );
+      })}
+    </Grid>
       {/* <Typography align="center" component="h1" variant="h5">
         You haven't posted to our marketplace yet
       </Typography> */}
