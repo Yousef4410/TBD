@@ -14,10 +14,6 @@ import {
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import axios from "axios";
-<<<<<<< HEAD
-import Center from "./components/Center";
-=======
->>>>>>> 08386456b28c0e491e16fc9baf83a8f47aee0037
 import { useEffect, useState } from "react";
 import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
 import { makeStyles } from "@material-ui/core/styles";
@@ -30,14 +26,11 @@ import Typography from "@material-ui/core/Typography";
 import { Grid, Tab } from "@material-ui/core";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-<<<<<<< HEAD
-=======
 /* in-house components */
 import Center from "./components/Center";
 import AuthProvider, { AuthContext } from "./components/AuthProvider";
 import AppTabs from "./components/AppTabs";
 
->>>>>>> 08386456b28c0e491e16fc9baf83a8f47aee0037
 // You need to swap out the Auth0 client id and domain with the one from your Auth0 client.
 // In your Auth0 client, you need to also add a url to your authorized redirect urls.
 //
@@ -138,15 +131,9 @@ export default function App() {
     });
 
     return (
-<<<<<<< HEAD
-      <Grid container justify="center" height="100%">
-        <div>{JSON.stringify(posts)}</div>
-      </Grid>
-=======
       <View style={styles.navBar}>
         <AppTabs />
       </View>
->>>>>>> 08386456b28c0e491e16fc9baf83a8f47aee0037
     );
   };
 
