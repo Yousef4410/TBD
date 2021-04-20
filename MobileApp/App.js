@@ -17,8 +17,6 @@ const authorizationEndpoint = "https://dev-smzgyb-n.us.auth0.com/authorize";
 const useProxy = Platform.select({ web: false, default: true });
 const redirectUri = AuthSession.makeRedirectUri({ useProxy });
 
-// test commit
-
 export default function App() {
   const [name, setName] = React.useState(null);
 
@@ -64,6 +62,15 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <Text>Yuh</Text>
+    </View>
+  );
+}
+
+
+// LOGIN PAGE JSX
+/*
+<View style={styles.container}>
       {name ? (
         <>
           <Text style={styles.title}>You are logged in, {name}!</Text>
@@ -77,8 +84,7 @@ export default function App() {
         />
       )}
     </View>
-  );
-}
+*/
 
 const styles = StyleSheet.create({
   container: {
