@@ -1,12 +1,3 @@
-// Need to do:
-//  - Connect to endpoints
-//  - Create basic marketplace for now
-//  - Fix landing page and make the buttons needed
-//  - Profile page a priority as well
-//  - Axios??
-
-
-
 import './App.css';
 import React from 'react'
 import { Marketplace } from './pages/Marketplace'

@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
     borderRadius: "2em"
   },
   divider: {
-    margin: theme.spacing.unit * 3
+    margin: theme.spacing(3)
   },
   description: {
     color: "#00000",
@@ -59,7 +59,6 @@ export default function MediaCard() {
       const token = await getAccessTokenSilently();
       const options = { headers: { 'Authorization': `Bearer ${token}` } }
       const apiResult = await axios.get('http://localhost:5000/posts/get', options); // This line is changed per API call, change sub to API name
-      console.log(apiResult.data)
       setPosts(await apiResult.data)
     })()
   }, [getAccessTokenSilently])
@@ -71,8 +70,8 @@ export default function MediaCard() {
       container spacing={2}>
       {posts.map((post, key) => {
         return (
-          <Grid item xs={12} sm={6} md={3}>
-            <Card variant="outlined" className={classes.card} key={key}>
+          <Grid item xs={12} sm={6} md={3} key={key}>
+            <Card variant="outlined" className={classes.card}>
               <CardActionArea>
                 {/* href="http://localhost:3000/items" */}
                 <CardMedia

@@ -39,12 +39,12 @@ export function Items() {
     return (
         <>
             <MarketNav />
+            <PostForm />
             <Grid container justify="center">
                 <div className={classes.cards}>
                     <MyCard />
                 </div>
             </Grid>
-            <PostForm />
         </>
     )
 }
