@@ -3,10 +3,12 @@ import * as AuthSession from "expo-auth-session";
 import jwtDecode from "jwt-decode";
 import * as React from "react";
 import { Alert, Button, Platform, StyleSheet, Text, View } from "react-native";
-//import { NavigationContainer } from '@react-navigation/native';
-//import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Marketplace from './pages/Marketplace';
+import Profile from './pages/Profile';
 
-//const Stack = createStackNavigator();
+const Stack = createStackNavigator();
 
 // You need to swap out the Auth0 client id and domain with the one from your Auth0 client.
 // In your Auth0 client, you need to also add a url to your authorized redirect urls.
@@ -66,20 +68,33 @@ export default function App() {
   }, [result]);
 
   return (
-    <View style={styles.container}>
-      {name ? (
-        <>
-          <Text style={styles.title}>You are logged in, {name}!</Text>
-          <Button title="Log out" onPress={() => setName(null)} />
-        </>
-      ) : (
-        <Button
-          disabled={!request}
-          title="Login"
-          onPress={() => promptAsync({ useProxy })}
+    <NavigationContainer>
+      <Stack.Navigator>
+        <View style={styles.container}>
+          {name ? (
+            <>
+              <Text style={styles.title}>You are logged in, {name}!</Text>
+              <Button title="Log out" onPress={() => setName(null)} />
+            </>
+          ) : (
+            <Button
+              disabled={!request}
+              title="Login"
+              onPress={() => promptAsync({ useProxy })}
+            />
+          )}
+        </View>
+        <Stack.Screen
+          name="MarketPlace"
+          component={Marketplace}
         />
-      )}
-    </View>
+        
+        <Stack.Screen
+          name="MarketPlace"
+          component={Marketplace}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
