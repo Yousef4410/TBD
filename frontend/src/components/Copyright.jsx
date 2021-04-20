@@ -10,7 +10,7 @@ export default function Copyright() {
         </div>
         <Typography variant="body2" color="textSecondary" align="center">
             {"Copyright © "}
-            <Link color="inherit">
+            <Link color="inherit" to="/">
             TradeU
             </Link>{" "}
             {new Date().getFullYear()}

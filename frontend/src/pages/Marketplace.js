@@ -1,10 +1,9 @@
 // Do I need to make another Navbar component?
 import MediaCard from '../components/MediaCard'
 import { MarketNav } from '../components/MarketNav'
-import { TextField, makeStyles, Grid, Paper, Typography, Box } from '@material-ui/core'
+import {  makeStyles, Grid, Typography, Box } from '@material-ui/core'
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import Copyright from '../components/Copyright';
-import LocalAtmIcon from '@material-ui/icons/LocalAtm';
-import PaymentIcon from '@material-ui/icons/Payment';
 
 const useStyles = makeStyles(theme => ({
   search: {
@@ -17,9 +16,21 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     margin: theme.spacing(4),
-    fontSize: "8em"
   }
 }))
+
+const theme = createMuiTheme();
+
+theme.typography.h3 = {
+  fontWeight: "100",
+  fontSize: '8em',
+  [theme.breakpoints.down('md')]: {
+    fontSize: '6em'
+  },
+  [theme.breakpoints.down('sm')]: {
+    fontSize: '2.7em'
+  }
+}
 
 // class SearchForm extends React.Component {
 //   constructor(props) {
@@ -44,9 +55,11 @@ export function Marketplace() {
   return (
     <>
     <MarketNav />
-     <Typography align="center" className={classes.title} variant="h3">
+    <ThemeProvider theme={theme}>
+      <Typography align="center" className={classes.title} variant="h3">
         Marketplace
       </Typography>
+    </ThemeProvider>
     <div>
       <Grid container justify="center" height="100%">
         {/*<form className={classes.search} noValidate autoComplete="off">
