@@ -2,41 +2,34 @@ import React from "react";
 import { View, Text, StyleSheet, Image, ColorPropType } from "react-native";
 import Color from "../constants/colors";
 
+// justifyContent: organize elements along main axis (default: column)
+// alignItems: organize elements along the cross axis (default: row)
 const PostItem = (props) => {
-  return (
-    <View style={styles.postContainer}>
-      <View style={styles.card}>
-        <Image
-          style={styles.tinyPicture}
-          source={{
-            uri:
-              "https://preview.redd.it/kjkj7wmsabh41.jpg?auto=webp&s=e4af665b106c86a42d4c3cbcbb622884676b8741",
-          }}
-        ></Image>
-      </View>
-      <View>
-        <Text>{props.description}</Text>
-      </View>
-    </View>
-  );
+  return <View style={styles.card}></View>;
 };
 
 const styles = StyleSheet.create({
   tinyPicture: {
-    width: 300,
-    height: 300,
-    borderRadius: 15,
-    borderColor: Color.white,
-    borderWidth: 3,
-  },
-  postContainer: {
-    alignItems: "center",
+    width: 150,
+    height: 150,
+    borderRadius: 30,
+    // borderColor: Color.white,
+    // borderWidth: 3,
   },
   card: {
-    backgroundColor: Color.white,
-    elevation: 7,
-    alignItems: "center",
-    borderRadius: 10,
+    backgroundColor: Color.cardColor,
+    width: "80%",
+    height: "80%",
+    elevation: 10,
+    borderRadius: 30,
+    marginVertical: 30,
+  },
+  imageContainer: {
+    flex: 3,
+  },
+  textContainer: {
+    flexDirection: "column",
+    flex: 1,
   },
 });
 

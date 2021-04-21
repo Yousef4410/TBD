@@ -1,26 +1,31 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import axios from "axios";
 import PostItem from "./PostItem";
 import Color from "../constants/colors";
+import MarketplaceView from "./MarketplaceView";
 
 /* mobile marketplace */
 const FindScreen = () => {
   /* getPosts API logic */
-  // const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState([]);
+
+  // "http://localhost:5000/posts/get"
 
   // useEffect(() => {
-  //   (async () => {
-  //     // This line is changed per API call, change sub to API name
-  //     const apiResult = await axios.get("http://localhost:5000/posts/get");
-  //     setPosts(await apiResult.data);
-  //   })();
-  // }, []);
+  //   fetch("http://localhost:5000/posts/get")
+  //     .then((response) => {
+  //       return response.json();
+  //     })
+  //     .then((responseData) => {
+  //       console.log(responseData);
+  //     });
+  // });
 
   return (
     <View style={styles.screen}>
-      <PostItem description="this my guy" />
+      <MarketplaceView />
     </View>
   );
 };
@@ -51,8 +56,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   screen: {
-    flex: 1,
-    padding: 10,
     backgroundColor: "#334B68",
     marginTop: 25,
   },

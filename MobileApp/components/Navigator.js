@@ -28,7 +28,7 @@ const Navigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Login"
+        initialRouteName="Marketplace"
         screenOptions={{ header: () => null }}
       >
         <Stack.Screen name="Login" component={LoginScreen} />

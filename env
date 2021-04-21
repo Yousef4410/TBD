@@ -1,0 +1,9 @@
+ISSUER_BASE_URL=https://dev-smzgyb-n.us.auth0.com
+CLIENT_ID=vITNfZJrVg3grsNBZ8uxQ8qAMZryS8BZ
+BASE_URL=http://localhost:5000
+SECRET=nliclbdbfuibeflnslckncdadw
+MONGODB_URI = mongodb+srv://sophie:qawsed123@cluster0.e8eca.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+DOMAIN=dev-smzgyb-n.us.auth0.com
+REACT_APP_AUTH0_DOMAIN=dev-smzgyb-n.us.auth0.com
+REACT_APP_AUTH0_CLIENT_ID=vITNfZJrVg3grsNBZ8uxQ8qAMZryS8BZ
+REACT_APP_AUTH0_AUDIENCE=check-auth-api
