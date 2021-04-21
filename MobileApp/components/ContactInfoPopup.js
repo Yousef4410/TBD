@@ -4,7 +4,7 @@ import Color from "../constants/colors";
 
 const ContactInfoPopup = (props) => {
   return (
-    <Modal visible={props.visibility}>
+    <Modal visible={props.visibility} animationType="none">
       <View style={styles.contactInfoContainer}>
         <View style={styles.contactInfo}>
           <Text style={styles.contactInfoText}>{props.contactInfo}</Text>
