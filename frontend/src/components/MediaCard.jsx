@@ -8,10 +8,20 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Grid } from "@material-ui/core";
-import me from "../images/me3.jpg";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react"
+import config from "../configz"
+
+let uri = "http://localhost:5000"
+console.log(process.env.NODE_ENV)
+if (process.env.NODE_ENV === "development"){
+  uri = "http://localhost:5000"
+}
+else if (process.env.NODE_ENV === "production"){
+  uri = "https://cop4331-app.herokuapp.com"
+}
+console.log("URI:" + uri)
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -64,7 +74,7 @@ export default function MediaCard() {
       console.log(token);
       const options = { headers: { Authorization: `Bearer ${token}` } };
       const apiResult = await axios.get(
-        "http://localhost:5000/posts/get",
+        `${uri}/posts/get`,// "http://localhost:5000/posts/get",
         options
       ); // This line is changed per API call, change sub to API name
       setPosts(await apiResult.data);
@@ -78,7 +88,6 @@ export default function MediaCard() {
           <Grid item xs={12} sm={6} md={3} key={key}>
             <Card variant="outlined" className={classes.card}>
               <CardActionArea>
-                {/* href="http://localhost:3000/items" */}
                 <CardMedia
                   className={classes.media}
                   image={`data:image/png;base64,${post.image}`}
