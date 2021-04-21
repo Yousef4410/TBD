@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Image,
+  ColorPropType,
+} from "react-native";
 import { Header } from "react-native/Libraries/NewAppScreen";
 
 import PostItem from "./PostItem";
@@ -15,10 +22,8 @@ const MarketplaceView = (props) => {
     setIsDisplayContactMode(false);
   };
 
-  console.log("initial" + isDisplayContactMode);
-
   return (
-    <View>
+    <View style={{ marginBottom: 10 }}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.marketplaceHeader}>
           <Text style={styles.marketplaceText}>Marketplace</Text>
@@ -65,6 +70,7 @@ const MarketplaceView = (props) => {
             onHide={cancelContactInfoScreenHandler}
             imageUri="https://www.cohenmedical.com/wp-content/uploads/2020/01/sad-seasonal-depression-1.jpg"
           />
+          <Text style={{ fontSize: 20 }}>©TradeU 2021</Text>
         </View>
       </ScrollView>
     </View>
@@ -74,6 +80,7 @@ const MarketplaceView = (props) => {
 const styles = StyleSheet.create({
   marketplaceText: {
     fontSize: 33,
+    color: "white",
   },
   marketplaceHeader: {
     marginTop: 30,

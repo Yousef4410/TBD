@@ -3,8 +3,6 @@ import { Modal, View, Button, StyleSheet, Text } from "react-native";
 import Color from "../constants/colors";
 
 const ContactInfoPopup = (props) => {
-  console.log("third" + props.visibility);
-  console.log("email" + props.contactInfo);
   return (
     <Modal visible={props.visibility}>
       <View style={styles.contactInfoContainer}>

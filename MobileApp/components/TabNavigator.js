@@ -5,6 +5,7 @@ import axios from "axios";
 import PostItem from "./PostItem";
 import Color from "../constants/colors";
 import MarketplaceView from "./MarketplaceView";
+import ProfileView from "./ProfileView";
 
 /* mobile marketplace */
 const FindScreen = () => {
@@ -31,11 +32,7 @@ const FindScreen = () => {
 };
 
 const ProfileScreen = () => {
-  return (
-    <View style={styles.center}>
-      <Text>profile goes here</Text>
-    </View>
-  );
+  return <ProfileView />;
 };
 
 const Tab = createBottomTabNavigator();
