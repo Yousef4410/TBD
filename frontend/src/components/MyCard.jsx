@@ -59,7 +59,7 @@ export default function MyCard() {
     (async () => {
       const token = await getAccessTokenSilently();
       const options = { headers: { 'Authorization': `Bearer ${token}` } }
-      const apiResult = await axios.get(`http://localhost:5000/posts/getUser/${splitStr[1]}`, options); // This line is changed per API call, change sub to API name
+      const apiResult = await axios.get(`/posts/getUser/${splitStr[1]}`, options); // This line is changed per API call, change sub to API name
       setPosts(await apiResult.data)
     })()
   }, [getAccessTokenSilently]);
@@ -76,7 +76,6 @@ export default function MyCard() {
           <Grid item xs={12} sm={6} md={3} key={key}>
             <Card variant="outlined" className={classes.card}>
               <CardActionArea>
-                {/* href="http://localhost:3000/items" */}
                 <CardMedia
                   className={classes.media}
                   image={`data:image/jpeg;base64,${post.image}`}
