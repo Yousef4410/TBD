@@ -33,6 +33,7 @@ const Navigator = () => {
       >
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Marketplace" component={MarketplaceScreen} />
+        <Stack.Screen name="Auth0" component={authLogin} />
       </Stack.Navigator>
     </NavigationContainer>
   );
