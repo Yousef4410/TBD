@@ -14,9 +14,9 @@ const app = express();
 // basic set up
 app.use(cors());
 // body parser included in express
-app.use(express.json({ limit: "10mb" }));
+app.use(express.json({ limit: "50mb" }));
 // handle form submissions / urlencoded data
-app.use(express.urlencoded({ extended: false, limit: "10mb" }));
+app.use(express.urlencoded({ extended: false, limit: "50mb" }));
 
 // auth0
 app.use(
