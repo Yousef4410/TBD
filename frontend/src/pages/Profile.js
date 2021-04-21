@@ -61,18 +61,6 @@ export function Profile() {
                             <Typography className={classes.text} variant="h4">{profile.nickname}</Typography>
                             <Typography className={classes.text}variant="h5">{profile.email}</Typography>
                         </Paper>
-                        <Button onClick={deleteProfile}
-                            variant="contained"
-                            color="secondary"
-                            className={classes.button}
-                            startIcon={<DeleteIcon />}
-                        >
-                            Delete
-                        </Button>
-                        <Button variant="contained" size="medium" color="primary" className={classes.margin}>
-                            Edit
-                        </Button>
-
                     </Container>
                 </div>
             </main>

@@ -80,20 +80,24 @@ export default function MediaCard(prop) {
                     variant="body2"
                     color="textSecondary"
                   >
-                    $ {post.price}
+                    Price: $ {post.price}
+                  </Typography>
+                  <Typography
+                  className={classes.price}
+                    variant="body2"
+                    color="textSecondary">
+                    Contact: {post.contact}
+                    
+                  </Typography>
+                  <Typography
+                  className={classes.price}
+                    variant="body2"
+                    color="textSecondary">
+                    Location: {post.location}
+                    
                   </Typography>
                 </CardContent>
               </CardActionArea>
-              <CardActions>
-                <Button
-                // onClick={() => history.push({
-                //   pathname: '/Product',
-                //   state: prop.data
-                // })}
-                  size="small" className={classes.btn}>
-                  Let's Trade
-                </Button>
-              </CardActions>
             </Card>
           </Grid>
         );

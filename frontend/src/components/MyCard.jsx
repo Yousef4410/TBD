@@ -79,6 +79,7 @@ export default function MyCard() {
 
   async function deletePost(string) {
     await axios.delete(`${uri}/posts/del/${string}`);
+    window.location.reload(false);
   }
 
   return (
