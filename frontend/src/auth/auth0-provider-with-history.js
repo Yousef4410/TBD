@@ -7,12 +7,13 @@ export const Auth0ProviderWithHistory = ({ children }) => {
   const domain = process.env.REACT_APP_AUTH0_DOMAIN;
   const clientID = process.env.REACT_APP_AUTH0_CLIENT_ID;
   const audience = process.env.REACT_APP_AUTH0_AUDIENCE;
+  const redirU = process.env.REDIR_URL;
 
   const onRedirectCallback = (appState) => {
     history.push(
       appState && appState.targetUrl
         ? appState.targetUrl
-        : (window.location.href = process.env.REDIR_URL)
+        : (window.location.href = `${redirU}`)
     );
   };
 
