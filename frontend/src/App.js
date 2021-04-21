@@ -5,7 +5,6 @@ import { Landing } from './pages/Landing'
 import { About } from './pages/About'
 import { Profile } from './pages/Profile'
 import { Items } from './pages/Items'
-import NotFoundPage from './pages/NotFoundPage'
 import { BrowserRouter as Switch, Route } from 'react-router-dom'
 import ProtectedRoute from './auth/ProtectedRoute'
 import { useAuth0 } from '@auth0/auth0-react'
@@ -34,7 +33,6 @@ function App() {
           <ProtectedRoute path='/profile' exact component={Profile} />
           <ProtectedRoute path='/items' exact component={Items} />
           {/*<ProtectedRoute path='/Product' exact component={Product} />*/}
-          <Route component={NotFoundPage}/>
         </Switch>
       </ThemeProvider>
   );
