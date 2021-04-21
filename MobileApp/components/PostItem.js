@@ -1,35 +1,59 @@
 import React from "react";
-import { View, Text, StyleSheet, Image, ColorPropType } from "react-native";
+import { View, Text, StyleSheet, Image, Button } from "react-native";
 import Color from "../constants/colors";
 
 // justifyContent: organize elements along main axis (default: column)
 // alignItems: organize elements along the cross axis (default: row)
+
+// incoming props: description, title, price, imageUri
 const PostItem = (props) => {
-  return <View style={styles.card}></View>;
+  return (
+    <View style={styles.card}>
+      <Image style={styles.tinyPicture} source={{ uri: props.imageUri }} />
+      <View style={styles.postInfo}>
+        <Text style={styles.title}>{props.title}</Text>
+        <Text style={styles.descText}>{props.description}</Text>
+        <Text style={styles.descText}>{props.price}</Text>
+      </View>
+      <View style={styles.postButton}>
+        <Button title="LET'S TRADE" />
+      </View>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
   tinyPicture: {
-    width: 150,
-    height: 150,
+    width: 230,
+    height: 230,
     borderRadius: 30,
+    marginTop: 20,
     // borderColor: Color.white,
     // borderWidth: 3,
   },
   card: {
     backgroundColor: Color.cardColor,
-    width: "80%",
-    height: "80%",
+    width: 300,
+    height: 500,
     elevation: 10,
-    borderRadius: 30,
     marginVertical: 30,
+    justifyContent: "space-between",
+    alignItems: "center",
   },
-  imageContainer: {
-    flex: 3,
-  },
-  textContainer: {
+  postInfo: {
+    width: 230,
+    height: 150,
     flexDirection: "column",
-    flex: 1,
+    justifyContent: "space-between",
+  },
+  postButton: {
+    marginBottom: 10,
+  },
+  title: {
+    fontSize: 37,
+  },
+  descText: {
+    fontSize: 18,
   },
 });
 
