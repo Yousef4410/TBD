@@ -48,53 +48,6 @@ theme.typography.h3 = {
   },
 };
 
-// class SearchForm extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {value: ''};
-
-//     this.handleChange = this.handleChange.bind(this);
-//     this.handleSubmit = this.handleSubmit.bind(this);
-//   }
-
-//   handleChange(event) {
-//     this.setState({value: event.target.value});
-//   }
-
-//   handleSubmit(event) {
-//     alert('A name was submitted: ' + this.state.value);
-//     event.preventDefault();
-//   }
-
-// function handleChange(data){
-//     (async () => {
-//       if (data === ""){
-//               const apiResult = await axios.get("http://localhost:5000/posts/get");
-//               return (
-//                 <div>
-//                   <Grid container justify="center" height="100%">
-//                     <div className={classes.cards}>
-//                       <MediaCard data={apiResult.data}/>
-//                     </div>
-//                   </Grid>
-//                 </div>
-//               )
-//       }
-//       else{
-//               const apiResult = await axios.get(`http://localhost:5000/posts/search/title/${data}`);
-//               return (
-//                 <div>
-//                   <Grid container justify="center" height="100%">
-//                     <div className={classes.cards}>
-//                       <MediaCard data={apiResult.data}/>
-//                     </div>
-//                   </Grid>
-//                 </div>
-//               )
-//       }
-//     })();
-// }
-
 export function Marketplace() {
   const [posts, setPosts] = useState([]);
   const classes = useStyles();

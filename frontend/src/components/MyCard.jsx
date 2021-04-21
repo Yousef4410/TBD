@@ -11,6 +11,8 @@ import { Container, Grid } from '@material-ui/core'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useAuth0 } from '@auth0/auth0-react'
+import DeleteIcon from '@material-ui/icons/Delete'
+import IconButton from '@material-ui/core/IconButton';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -59,11 +61,15 @@ export default function MyCard() {
     (async () => {
       const token = await getAccessTokenSilently();
       const options = { headers: { 'Authorization': `Bearer ${token}` } }
-      const apiResult = await axios.get(`/posts/getUser/${splitStr[1]}`, options); // This line is changed per API call, change sub to API name
+      const apiResult = await axios.get(`http://localhost:5000/posts/getUser/${splitStr[1]}`, options); // This line is changed per API call, change sub to API name
       setPosts(await apiResult.data)
     })()
   }, [getAccessTokenSilently]);
-  console.log(posts)
+  //console.log(posts)
+
+  async function deletePost(string) {
+    await axios.delete(`http://localhost:5000/posts/${string}`);
+  }
 
   return (
     <> 
@@ -93,8 +99,10 @@ export default function MyCard() {
                 </CardContent>
               </CardActionArea>
               <CardActions>
-                <Button size="small" className={classes.btn}>
-                  Let's Trade
+              <Button
+                  onClick={() => deletePost(post._id)}
+                  size="small" className={classes.btn}>
+                  Delete
                 </Button>
               </CardActions>
             </Card>
