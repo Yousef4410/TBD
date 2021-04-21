@@ -1,21 +1,13 @@
 import * as AuthSession from "expo-auth-session";
 import jwtDecode from "jwt-decode";
 import * as React from "react";
-import {
-  ActivityIndicator,
-  Alert,
-  Button,
-  FlatList,
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Alert, Button, Platform, StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import axios from "axios";
+import axios from 'axios'
+import Center from "./components/Center";
 import { useEffect, useState } from "react";
-import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -23,13 +15,8 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
-import { Grid, Tab } from "@material-ui/core";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Grid } from "@material-ui/core";
 
-/* in-house components */
-import Center from "./components/Center";
-import AuthProvider, { AuthContext } from "./components/AuthProvider";
-import AppTabs from "./components/AppTabs";
 
 // You need to swap out the Auth0 client id and domain with the one from your Auth0 client.
 // In your Auth0 client, you need to also add a url to your authorized redirect urls.
@@ -113,7 +100,7 @@ export default function App() {
         <Button
           title="go to login"
           onPress={() => {
-            navigation.navigate("Login");
+            navigation.navigate("MarketPlace");
           }}
         />
       </Center>
@@ -121,37 +108,40 @@ export default function App() {
   };
 
   const MarketPlace = () => {
-    const [posts, setPosts] = useState([]);
 
-    useEffect(() => {
-      (async () => {
-        const apiResult = await axios.get("http://localhost:5000/posts/get"); // This line is changed per API call, change sub to API name
-        setPosts(await apiResult.data);
-      })();
-    });
+  const [posts, setPosts] = useState([]);
 
-    return (
-      <View style={styles.navBar}>
-        <AppTabs />
-      </View>
-    );
-  };
+  useEffect(() => {
+    (async () => {
+      const apiResult = await axios.get(
+        "http://localhost:5000/posts/get"
+      ); // This line is changed per API call, change sub to API name
+      setPosts(await apiResult.data);
+    })();
+  });
+
+  return (
+    <Grid container justify="center" height="100%">
+        
+        <div>
+        {JSON.stringify(posts)} 
+        </div>
+      </Grid>
+  );
+
+}
+
 
   // "initialRouteName" prop determines the starting screen
   // "initialRouteName" prop points to the "name" prop of a Stack.Screen
   return (
-    <AuthProvider>
-      <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{ header: () => null }}
-          initialRouteName="Marketplace"
-        >
-          <Stack.Screen name="Login" component={LoginScreen} />
-          <Stack.Screen name="Register" component={RegisterScreen} />
-          <Stack.Screen name="Marketplace" component={MarketPlace} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </AuthProvider>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen name="MarketPlace" component={MarketPlace} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
@@ -184,9 +174,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: "center",
     marginTop: 40,
-  },
-  navBar: {
-    flex: 3,
-    alignContent: "center",
   },
 });
