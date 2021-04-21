@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === "development"){
   uri = "http://localhost:5000"
 }
 else if (process.env.NODE_ENV === "production"){
-  uri = "https://cop4331-app.herokuapp.com"
+  uri = "https://tradeu4.herokuapp.com"
 }
 
 const useStyles = makeStyles(theme => ({
