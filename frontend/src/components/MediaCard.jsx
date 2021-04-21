@@ -11,7 +11,7 @@ import { Grid } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react"
-import config from "../config"
+import config from "../configz"
 
 const useStyles = makeStyles((theme) => ({
   root: {
