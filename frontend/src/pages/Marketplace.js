@@ -9,6 +9,15 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
 
+let uri = "http://localhost:5000";
+console.log(process.env.NODE_ENV);
+if (process.env.NODE_ENV === "development") {
+  uri = "http://localhost:5000";
+} else if (process.env.NODE_ENV === "production") {
+  uri = "https://cop4331-app.herokuapp.com";
+}
+console.log("URI:" + uri);
+
 const useStyles = makeStyles((theme) => ({
   search: {
     margin: theme.spacing(2),
@@ -39,53 +48,6 @@ theme.typography.h3 = {
   },
 };
 
-// class SearchForm extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {value: ''};
-
-//     this.handleChange = this.handleChange.bind(this);
-//     this.handleSubmit = this.handleSubmit.bind(this);
-//   }
-
-//   handleChange(event) {
-//     this.setState({value: event.target.value});
-//   }
-
-//   handleSubmit(event) {
-//     alert('A name was submitted: ' + this.state.value);
-//     event.preventDefault();
-//   }
-
-// function handleChange(data){
-//     (async () => {
-//       if (data === ""){
-//               const apiResult = await axios.get("http://localhost:5000/posts/get");
-//               return (
-//                 <div>
-//                   <Grid container justify="center" height="100%">
-//                     <div className={classes.cards}>
-//                       <MediaCard data={apiResult.data}/>
-//                     </div>
-//                   </Grid>
-//                 </div>
-//               )
-//       }
-//       else{
-//               const apiResult = await axios.get(`http://localhost:5000/posts/search/title/${data}`);
-//               return (
-//                 <div>
-//                   <Grid container justify="center" height="100%">
-//                     <div className={classes.cards}>
-//                       <MediaCard data={apiResult.data}/>
-//                     </div>
-//                   </Grid>
-//                 </div>
-//               )
-//       }
-//     })();
-// }
-
 export function Marketplace() {
   const [posts, setPosts] = useState([]);
   const classes = useStyles();
@@ -94,8 +56,6 @@ export function Marketplace() {
 
   async function initialPosts() {
     apiResult = await axios.get(`http://localhost:5000/posts/get`);
-    // console.log(apiResult.data);
-
     setPosts(apiResult.data);
   }
   if (data === "") initialPosts();
