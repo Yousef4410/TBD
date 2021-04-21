@@ -42,6 +42,7 @@ function SendingData(props) {
         }).catch(function (error) {
           console.log(error);
         })
+        window.location.reload(false)
       }
   }, [token, props.confirm, props.data]);
 

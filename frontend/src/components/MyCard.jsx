@@ -68,7 +68,8 @@ export default function MyCard() {
   //console.log(posts)
 
   async function deletePost(string) {
-    await axios.delete(`http://localhost:5000/posts/${string}`);
+    await axios.delete(`http://localhost:5000/posts/del/${string}`);
+    window.location.reload(false);
   }
 
   return (
