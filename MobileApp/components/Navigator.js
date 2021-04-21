@@ -26,13 +26,12 @@ const Stack = createStackNavigator();
 const Navigator = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
+      <Stack.Navigator
+        initialRouteName="Login"
+        screenOptions={{ header: () => null }}
+      >
         <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen
-          name="Marketplace"
-          options={{ header: () => null }}
-          component={MarketplaceScreen}
-        />
+        <Stack.Screen name="Marketplace" component={MarketplaceScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

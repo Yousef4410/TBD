@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, FlatList } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import axios from "axios";
 import PostItem from "./PostItem";
+import Color from "../constants/colors";
 
 /* mobile marketplace */
 const FindScreen = () => {
@@ -19,7 +20,7 @@ const FindScreen = () => {
 
   return (
     <View style={styles.screen}>
-      <PostItem />
+      <PostItem description="this my guy" />
     </View>
   );
 };
@@ -50,7 +51,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   screen: {
-    padding: 30,
+    flex: 1,
+    padding: 10,
+    backgroundColor: "#334B68",
+    marginTop: 25,
+  },
+  marketplace: {
+    fontSize: 50,
+    marginBottom: 20,
   },
 });
 
