@@ -14,6 +14,15 @@ import { useAuth0 } from '@auth0/auth0-react'
 import DeleteIcon from '@material-ui/icons/Delete'
 import IconButton from '@material-ui/core/IconButton';
 
+let uri = "http://localhost:5000"
+console.log(process.env.NODE_ENV)
+if (process.env.NODE_ENV === "development"){
+  uri = "http://localhost:5000"
+}
+else if (process.env.NODE_ENV === "production"){
+  uri = "https://cop4331-app.herokuapp.com"
+}
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -61,14 +70,14 @@ export default function MyCard() {
     (async () => {
       const token = await getAccessTokenSilently();
       const options = { headers: { 'Authorization': `Bearer ${token}` } }
-      const apiResult = await axios.get(`http://localhost:5000/posts/getUser/${splitStr[1]}`, options); // This line is changed per API call, change sub to API name
+      const apiResult = await axios.get(`${uri}/posts/getUser/${splitStr[1]}`, options); // This line is changed per API call, change sub to API name
       setPosts(await apiResult.data)
     })()
   }, [getAccessTokenSilently]);
   //console.log(posts)
 
   async function deletePost(string) {
-    await axios.delete(`http://localhost:5000/posts/${string}`);
+    await axios.delete(`${uri}/posts/${string}`);
   }
 
   return (
