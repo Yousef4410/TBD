@@ -4,6 +4,15 @@ import AddIcon from "@material-ui/icons/Add";
 import axios from "axios";
 import { useAuth0 } from '@auth0/auth0-react'
 
+let uri = "http://localhost:5000"
+console.log(process.env.NODE_ENV)
+if (process.env.NODE_ENV === "development"){
+  uri = "http://localhost:5000"
+}
+else if (process.env.NODE_ENV === "production"){
+  uri = "https://cop4331-app.herokuapp.com"
+}
+console.log("URI:" + uri)
 const useStyles = makeStyles({
   btn: {
     backgroundColor: "#56F6E4",
@@ -23,7 +32,7 @@ function SendingData(props) {
 
     if (token && props.confirm) {
       setLoading(true);
-      axios.post("http://localhost:5000/posts/create", props.data, {
+      axios.post(`${uri}/posts/create`, props.data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
