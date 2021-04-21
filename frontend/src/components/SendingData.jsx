@@ -16,8 +16,8 @@ function SendingData(props) {
   const [token, setToken] = useState("");
   const [loading, setLoading] = useState(false);
   const { getAccessTokenSilently } = useAuth0()
-  console.log("Data: " + JSON.stringify(props.data));
-  console.log("Confirm: " + props.confirm);
+  //console.log("Data: " + JSON.stringify(props.data));
+  //console.log("Confirm: " + props.confirm);
 
   useEffect(() => {
 

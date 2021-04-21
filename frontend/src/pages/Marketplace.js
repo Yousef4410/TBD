@@ -3,11 +3,18 @@ import MediaCard from '../components/MediaCard'
 import { MarketNav } from '../components/MarketNav'
 import {  makeStyles, Grid, Typography, Box } from '@material-ui/core'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
-import Copyright from '../components/Copyright';
+import Copyright from '../components/Copyright'
+import SearchBar from "material-ui-search-bar"
+import React, { useState } from "react"
+import axios from 'axios';
+import { useEffect } from "react";
 
 const useStyles = makeStyles(theme => ({
   search: {
     margin: theme.spacing(2),
+    width: "50%",
+    marginLeft: "auto",
+    marginRight: "auto"
   },
   cards: {
     flexGrow: 1,
@@ -50,8 +57,50 @@ theme.typography.h3 = {
 //     event.preventDefault();
 //   }
 
+// function handleChange(data){
+//     (async () => {
+//       if (data === ""){
+//               const apiResult = await axios.get("http://localhost:5000/posts/get");
+//               return (
+//                 <div>
+//                   <Grid container justify="center" height="100%">
+//                     <div className={classes.cards}>
+//                       <MediaCard data={apiResult.data}/>
+//                     </div>
+//                   </Grid>
+//                 </div>
+//               )
+//       }
+//       else{
+//               const apiResult = await axios.get(`http://localhost:5000/posts/search/title/${data}`);
+//               return (
+//                 <div>
+//                   <Grid container justify="center" height="100%">
+//                     <div className={classes.cards}>
+//                       <MediaCard data={apiResult.data}/>
+//                     </div>
+//                   </Grid>
+//                 </div>
+//               )
+//       }
+//     })();
+// }
+
 export function Marketplace() {
+  const [posts, setPosts] = useState([])
   const classes = useStyles();
+  const [data, setData] = useState("");
+  var apiResult = {};
+
+  
+async function initialPosts() {
+  apiResult = await axios.get(`http://localhost:5000/posts/get`)
+        // console.log(apiResult.data);
+      
+        setPosts(apiResult.data)
+}
+if(data==="") initialPosts()
+
   return (
     <>
     <MarketNav />
@@ -60,19 +109,33 @@ export function Marketplace() {
         Marketplace
       </Typography>
     </ThemeProvider>
+    <SearchBar className={classes.search}
+    value = {data}
+    onChange={(value)=>setData(value)}
+    onRequestSearch={async () =>   {
+      if(data === ""){
+        apiResult = await axios.get("http://localhost:5000/posts/get")
+      }
+      else{
+          apiResult = await axios.get(`http://localhost:5000/posts/search/title/${data}`)
+        // console.log(apiResult.data);
+      }
+        setPosts(apiResult.data)
+
+    }}
+    />
     <div>
       <Grid container justify="center" height="100%">
-        {/*<form className={classes.search} noValidate autoComplete="off">
-          <TextField fullWidth id="outlined-full-width" label="Search" variant="outlined" />
-          </form>*/}
-        <div className={classes.cards}>
-          <MediaCard />
-        </div>
+         <div className={classes.cards}>
+            <MediaCard data={posts}/>
+         </div>
       </Grid>
-    </div>
+   </div>
     <Box mt={8}>
       <Copyright/>
     </Box>
     </>
   );
 }
+
+export default Marketplace;
