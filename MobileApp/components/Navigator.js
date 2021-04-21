@@ -1,14 +1,19 @@
 import * as React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import TabNavigator from "./TabNavigator";
 
-const Stack = createStackNavigator();
-
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
   return (
     <View style={styles.center}>
       <Text>login here</Text>
+      <Button
+        title="Login"
+        onPress={() => {
+          navigation.navigate("Marketplace");
+        }}
+      />
     </View>
   );
 };
@@ -21,10 +26,28 @@ const Marketplace = () => {
   );
 };
 
-const StackNavigator = () => {
+const FindScreen = () => {
+  return (
+    <View>
+      <Text>test</Text>
+    </View>
+  );
+};
+
+const ProfileScreen = () => {
+  return (
+    <View>
+      <Text>profile goes here</Text>
+    </View>
+  );
+};
+
+const Stack = createStackNavigator();
+
+const Navigator = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Marketplace">
+      <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Marketplace" component={Marketplace} />
       </Stack.Navigator>
@@ -40,4 +63,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default StackNavigator;
+export default Navigator;

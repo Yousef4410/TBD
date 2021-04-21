@@ -1,9 +1,9 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import StackNavigator from "./components/StackNavigator";
+import Navigator from "./components/Navigator";
 
 export default function App() {
-  return <StackNavigator />;
+  return <Navigator />;
 }
 
 const styles = StyleSheet.create({});
