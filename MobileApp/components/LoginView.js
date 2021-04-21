@@ -22,7 +22,13 @@ const LoginView = (props) => {
           </View>
         </View>
         <View style={styles.buttonsContainer}>
-          <Button title="Login" color="#0E788F" />
+          <Button
+            title="Login"
+            color="#0E788F"
+            onPress={() => {
+              props.navPointer.navigate("Marketplace");
+            }}
+          />
           {/*<Button title="Create Account" color="#0E788F" */}
           <Button title="Forgot Password?" color="#0E788F" />
         </View>
