@@ -18,7 +18,7 @@ const LoginScreen = ({ navigation }) => {
   );
 };
 
-const Marketplace = (props) => {
+const MarketplaceScreen = (props) => {
   return <TabNavigator />;
 };
 const Stack = createStackNavigator();
@@ -31,7 +31,7 @@ const Navigator = () => {
         <Stack.Screen
           name="Marketplace"
           options={{ header: () => null }}
-          component={Marketplace}
+          component={MarketplaceScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
