@@ -18,30 +18,9 @@ const LoginScreen = ({ navigation }) => {
   );
 };
 
-const Marketplace = () => {
-  return (
-    <View style={styles.center}>
-      <Text>posts go here</Text>
-    </View>
-  );
+const Marketplace = (props) => {
+  return <TabNavigator />;
 };
-
-const FindScreen = () => {
-  return (
-    <View>
-      <Text>test</Text>
-    </View>
-  );
-};
-
-const ProfileScreen = () => {
-  return (
-    <View>
-      <Text>profile goes here</Text>
-    </View>
-  );
-};
-
 const Stack = createStackNavigator();
 
 const Navigator = () => {
@@ -49,7 +28,11 @@ const Navigator = () => {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Marketplace" component={Marketplace} />
+        <Stack.Screen
+          name="Marketplace"
+          options={{ header: () => null }}
+          component={Marketplace}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
