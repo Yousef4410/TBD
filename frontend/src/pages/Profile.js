@@ -1,3 +1,4 @@
+import React from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 import { MarketNav } from '../components/MarketNav'
 import { Avatar, Container, Paper, Typography, Button, Box } from '@material-ui/core'

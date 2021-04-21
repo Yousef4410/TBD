@@ -1,4 +1,5 @@
 // Do I need to make another Navbar component?
+import React from 'react'
 import MediaCard from '../components/MediaCard'
 import { MarketNav } from '../components/MarketNav'
 import {  makeStyles, Grid, Typography, Box } from '@material-ui/core'
