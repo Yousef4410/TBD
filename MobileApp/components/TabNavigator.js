@@ -32,7 +32,11 @@ const FindScreen = () => {
 };
 
 const ProfileScreen = () => {
-  return <ProfileView />;
+  return (
+    <View style={styles.screen}>
+      <ProfileView />
+    </View>
+  );
 };
 
 const Tab = createBottomTabNavigator();
@@ -53,6 +57,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   screen: {
+    flex: 1,
     backgroundColor: "#334B68",
     marginTop: 25,
   },
