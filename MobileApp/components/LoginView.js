@@ -18,7 +18,11 @@ const LoginView = (props) => {
             <TextInput style={styles.entryField} placeholder="Username" />
           </View>
           <View backgroundColor="white">
-            <TextInput style={styles.entryField} placeholder="Password" />
+            <TextInput
+              style={styles.entryField}
+              secureTextEntry={true}
+              placeholder="Password"
+            />
           </View>
         </View>
         <View style={styles.buttonsContainer}>
