@@ -9,14 +9,14 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
 
-let uri = "http://localhost:5000";
-console.log(process.env.NODE_ENV);
-if (process.env.NODE_ENV === "development") {
-  uri = "http://localhost:5000";
-} else if (process.env.NODE_ENV === "production") {
-  uri = "https://cop4331-app.herokuapp.com";
+let uri = "http://localhost:5000"
+console.log(process.env.NODE_ENV)
+if (process.env.NODE_ENV === "development"){
+  uri = "http://localhost:5000"
 }
-console.log("URI:" + uri);
+else if (process.env.NODE_ENV === "production"){
+  uri = "https://cop4331-app.herokuapp.com"
+}
 
 const useStyles = makeStyles((theme) => ({
   search: {
@@ -55,10 +55,12 @@ export function Marketplace() {
   var apiResult = {};
 
   async function initialPosts() {
-    apiResult = await axios.get(`http://localhost:5000/posts/get`);
+    apiResult = await axios.get(`${uri}/posts/get`);
+    // console.log(apiResult.data);
+
     setPosts(apiResult.data);
   }
-  if (data === "") initialPosts();
+  if (!data) initialPosts();
 
   return (
     <>
@@ -74,10 +76,10 @@ export function Marketplace() {
         onChange={(value) => setData(value)}
         onRequestSearch={async () => {
           if (data === "") {
-            apiResult = await axios.get("http://localhost:5000/posts/get");
+            apiResult = await axios.get(`${uri}/posts/get`);
           } else {
             apiResult = await axios.get(
-              `http://localhost:5000/posts/search/title/${data}`
+              `${uri}/posts/search/title/${data}`
             );
             // console.log(apiResult.data);
           }

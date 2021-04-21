@@ -1,51 +1,58 @@
 import React from 'react'
-import { shallow, mount } from 'enzyme'
-import Routes, { Marketplace, About, Profile, Items, NoMatch } from './App'
+import ReactDOM from 'react-dom'
+import { mount, configure } from 'enzyme'
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import App from './src/App'
+import {Marketplace} from './src/pages/Marketplace'
+import {About} from './src/pages/About'
+import {Profile} from './src/pages/Profile'
+import {Items} from './src/pages/Items'
 import { MemoryRouter } from 'react-router'
-import { Route } from 'react-router-dom';
-import { useAuth0 } from '@auth0/auth0-react'
+import NotFoundPage from './src/pages/NotFoundPage';
+
+configure({adapter: new Adapter()});
 
 describe('routes using memory router', () => {
 
-  it('should show Home component for / router (using memory router)', () => {
-    const component = mount(<MemoryRouter initialentries="{['/']}">
-        <Routes/>
+  test('should show About component for /about router (using memory router)', () => {
+    const component = mount(<MemoryRouter initialentries={['/about']}>
+        <App/>
      </MemoryRouter>
     );
-    expect(component.find(Marketplace)).toHaveLength(1);
+    expect(component.length).toEqual(1);
   })
 
   
-  it('should show About component for / router (using memory router)', () => {
-    const component = mount(<MemoryRouter initialentries="{['/about']}">
-        <Routes/>
+  test('/about router (using memory router)', () => {
+    const component = mount(<MemoryRouter initialentries={['/about']}>
+        <App/>
      </MemoryRouter>
     );
-    expect(component.find(About)).toHaveLength(1);
+    expect(component.length).toEqual(1);
   })
 
-  it('should show  Profile component for / router (using memory router)', () => {
-    const component = mount(<MemoryRouter initialentries="{['/profile']}">
-        <Routes/>
+  test('should show  Profile component for /profile router (using memory router)', () => {
+    const component = mount(<MemoryRouter initialentries={['/profile']}>
+        <App/>
      </MemoryRouter>
     );
-    expect(component.find(Profile)).toHaveLength(1);
+    expect(component.length).toEqual(1);
   })
 
-  it('should show Items component for / router (using memory router)', () => {
-    const component = mount(<MemoryRouter initialentries="{['/items']}">
-        <Routes/>
+  test('should show Items component for /items router (using memory router)', () => {
+    const component = mount(<MemoryRouter initialentries={['/items']}>
+        <App/>
      </MemoryRouter>
     );
-    expect(component.find(Items)).toHaveLength(1);
+    expect(component.length).toEqual(1);
   })
 
-  it('should show No match component for route not defined', () => {
-    const component = mount(<MemoryRouter initialEntries="{['/unknown']}">
-        <Routes/>
+  test('should show No match component for route not defined', () => {
+    const component = mount(<MemoryRouter initialEntries={['/unknown']}>
+        <App/>
     </MemoryRouter>
     );
-    expect(component.find(NoMatch)).toHaveLength(1);
+    expect(component.length).toEqual(1);
   })
 
 })

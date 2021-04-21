@@ -1,6 +1,6 @@
 // How to show Landing page when logged out but Marketplace when logged in?
 // Need to put our logo image instead of typography
-
+import React from 'react'
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useAuth0 } from '@auth0/auth0-react';
