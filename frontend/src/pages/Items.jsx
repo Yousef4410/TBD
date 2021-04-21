@@ -56,7 +56,7 @@ export function Items() {
     //     const token = await getAccessTokenSilently();
     //     console.log(token)
     //     const options = { headers: { 'Authorization': `Bearer ${token}`}}
-    //     const apiResult = await axios.get('http://localhost:5000/get', options);
+    //     const apiResult = await axios.get('/get', options);
     //     setPosts(apiResult.data);
     //     }
     //     exampleApiCallOnLoad();

@@ -14,22 +14,22 @@ const app = express();
 // basic set up
 app.use(cors());
 // body parser included in express
-app.use(express.json({limit:'50mb'}));
+app.use(express.json({ limit: "50mb" }));
 // handle form submissions / urlencoded data
-app.use(express.urlencoded({ extended: true, limit:'50mb' }));
+app.use(express.urlencoded({ extended: false, limit: "50mb" }));
 
 // auth0
-// app.use(
-//   auth({
-//     auth0Logout: true,
-//     authRequired: false,
-//     issuerBaseURL: process.env.ISSUER_BASE_URL,
-//     baseURL: process.env.BASE_URL,
-//     clientID: process.env.CLIENT_ID,
-//     secret: process.env.SECRET,
-//     idpLogout: true,
-//   })
-// );
+app.use(
+  auth({
+    auth0Logout: true,
+    authRequired: false,
+    issuerBaseURL: process.env.ISSUER_BASE_URL,
+    baseURL: process.env.BASE_URL,
+    clientID: process.env.CLIENT_ID,
+    secret: process.env.SECRET,
+    idpLogout: true,
+  })
+);
 
 // connect DB
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });

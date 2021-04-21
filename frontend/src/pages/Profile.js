@@ -36,14 +36,14 @@ export function Profile() {
     async function getProfile(username, email, avatar) {
         const token = await getAccessTokenSilently();
         const options = { headers: { 'Authorization': `Bearer ${token}` } }
-        const apiResult = await axios.post(`http://localhost:5000/users/${profile.sub}`, options); // This line is changed per API call, change sub to API name
+        const apiResult = await axios.post(`/users/${profile.sub}`, options); // This line is changed per API call, change sub to API name
         setProfile(apiResult.data)
     }
 
     async function deleteProfile() {
         const token = await getAccessTokenSilently();
         const options = { headers: { 'Authorization': `Bearer ${token}` } }
-        const apiResult = await axios.delete(`http://localhost:5000/${profile.sub}`, options);
+        const apiResult = await axios.delete(`/${profile.sub}`, options);
     }
 
 
