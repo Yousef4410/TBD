@@ -8,7 +8,7 @@ import ContactInfoPopup from "./ContactInfoPopup";
 
 // incoming props: description, title, price, imageUri
 
-const PostItem = (props) => {
+const PersonalPostItem = (props) => {
   return (
     <View style={styles.card}>
       <Image style={styles.tinyPicture} source={{ uri: props.imageUri }} />
@@ -18,7 +18,7 @@ const PostItem = (props) => {
         <Text style={styles.descText}>{props.price}</Text>
       </View>
       <View style={styles.postButton}>
-        <Button title="Delete" />
+        <Button title="Delete" color="red" />
       </View>
     </View>
   );
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     width: 300,
     height: 500,
     elevation: 10,
-    marginVertical: 30,
+    marginBottom: 30,
     justifyContent: "space-between",
     alignItems: "center",
   },
