@@ -9,13 +9,12 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
 
-let uri = "http://localhost:5000"
-console.log(process.env.NODE_ENV)
-if (process.env.NODE_ENV === "development"){
-  uri = "http://localhost:5000"
-}
-else if (process.env.NODE_ENV === "production"){
-  uri = "https://cop4331-app.herokuapp.com"
+let uri = "http://localhost:5000";
+console.log(process.env.NODE_ENV);
+if (process.env.NODE_ENV === "development") {
+  uri = "http://localhost:5000";
+} else if (process.env.NODE_ENV === "production") {
+  uri = "https://tradeu4.herokuapp.com";
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -78,9 +77,7 @@ export function Marketplace() {
           if (data === "") {
             apiResult = await axios.get(`${uri}/posts/get`);
           } else {
-            apiResult = await axios.get(
-              `${uri}/posts/search/title/${data}`
-            );
+            apiResult = await axios.get(`${uri}/posts/search/title/${data}`);
             // console.log(apiResult.data);
           }
           setPosts(apiResult.data);
