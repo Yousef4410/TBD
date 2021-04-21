@@ -4,7 +4,19 @@ import { Header } from "react-native/Libraries/NewAppScreen";
 
 import PostItem from "./PostItem";
 
-const MarketplaceView = () => {
+const MarketplaceView = (props) => {
+  const [isDisplayContactMode, setIsDisplayContactMode] = useState(false);
+
+  const displayContactInfoScreenHandler = () => {
+    setIsDisplayContactMode(true);
+  };
+
+  const cancelContactInfoScreenHandler = () => {
+    setIsDisplayContactMode(false);
+  };
+
+  console.log("initial" + isDisplayContactMode);
+
   return (
     <View>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -21,24 +33,36 @@ const MarketplaceView = () => {
             description="this my guy"
             title="Flowers"
             price="$1"
+            visibility={isDisplayContactMode}
+            onTrade={displayContactInfoScreenHandler}
+            onHide={cancelContactInfoScreenHandler}
             imageUri="https://www.legacy.com/wp-content/uploads/2020/01/Sympathy-flowers-orange-1000-shutterstock_694680475.jpg"
           />
           <PostItem
             description="we was slatt"
             title="Bouquet"
             price="$2"
+            visibility={isDisplayContactMode}
+            onTrade={displayContactInfoScreenHandler}
+            onHide={cancelContactInfoScreenHandler}
             imageUri="https://cdn.britannica.com/88/194588-050-967E8D17/flowers.jpg"
           />
           <PostItem
             description="on him"
             title="Pain"
             price="$3"
+            visibility={isDisplayContactMode}
+            onTrade={displayContactInfoScreenHandler}
+            onHide={cancelContactInfoScreenHandler}
             imageUri="https://numeralpaint.com/wp-content/uploads/2020/08/sad-man-sunset-silhouette-adult-paint-by-numbers.jpg"
           />
           <PostItem
             description="sad"
             title="Suffering"
             price="$4"
+            visibility={isDisplayContactMode}
+            onTrade={displayContactInfoScreenHandler}
+            onHide={cancelContactInfoScreenHandler}
             imageUri="https://www.cohenmedical.com/wp-content/uploads/2020/01/sad-seasonal-depression-1.jpg"
           />
         </View>
@@ -52,7 +76,7 @@ const styles = StyleSheet.create({
     fontSize: 33,
   },
   marketplaceHeader: {
-    marginVertical: 20,
+    marginTop: 30,
     marginLeft: 20,
     flexDirection: "row",
     justifyContent: "space-between",

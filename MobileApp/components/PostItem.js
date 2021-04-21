@@ -1,11 +1,13 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, Button } from "react-native";
 import Color from "../constants/colors";
+import ContactInfoPopup from "./ContactInfoPopup";
 
 // justifyContent: organize elements along main axis (default: column)
 // alignItems: organize elements along the cross axis (default: row)
 
 // incoming props: description, title, price, imageUri
+
 const PostItem = (props) => {
   return (
     <View style={styles.card}>
@@ -16,7 +18,13 @@ const PostItem = (props) => {
         <Text style={styles.descText}>{props.price}</Text>
       </View>
       <View style={styles.postButton}>
-        <Button title="LET'S TRADE" />
+        <Button title="LET'S TRADE" onPress={props.onTrade} />
+        <ContactInfoPopup
+          visibility={props.visibility}
+          animationType="slide"
+          onCancel={props.onHide}
+          contactInfo="bigmanbilly@yeehaw.buckaroo"
+        />
       </View>
     </View>
   );
