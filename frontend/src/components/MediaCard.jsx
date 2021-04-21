@@ -10,22 +10,16 @@ import Typography from "@material-ui/core/Typography";
 import { Grid } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import axios from "axios";
-<<<<<<< HEAD
 import { useAuth0 } from "@auth0/auth0-react";
-// import MarketPlace from "./pages/MarketPlace";
-=======
-import { useAuth0 } from "@auth0/auth0-react"
 
-let uri = "http://localhost:5000"
-console.log(process.env.NODE_ENV)
-if (process.env.NODE_ENV === "development"){
-  uri = "http://localhost:5000"
+let uri = "http://localhost:5000";
+console.log(process.env.NODE_ENV);
+if (process.env.NODE_ENV === "development") {
+  uri = "http://localhost:5000";
+} else if (process.env.NODE_ENV === "production") {
+  uri = "https://cop4331-app.herokuapp.com";
 }
-else if (process.env.NODE_ENV === "production"){
-  uri = "https://cop4331-app.herokuapp.com"
-}
-console.log("URI:" + uri)
->>>>>>> c75fbcbb8dd90eb9e2b4ea367ef2acd27cd0629d
+console.log("URI:" + uri);
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -77,7 +71,7 @@ export default function MediaCard(prop) {
   //     // console.log(token);
   //     const options = { headers: { Authorization: `Bearer ${token}` } };
   //     const apiResult = await axios.get("http://localhost:5000/posts/get", options);
-      
+
   //     if (prop.data.length){
   //       setPosts(prop.data)
   //     }
@@ -85,23 +79,8 @@ export default function MediaCard(prop) {
   //       setPosts(apiResult.data)
   //     }
 
-<<<<<<< HEAD
   //   })();
   // }, [prop.data, getAccessTokenSilently]);
-=======
-  useEffect(() => {
-    (async () => {
-      const token = await getAccessTokenSilently();
-      console.log(token);
-      const options = { headers: { Authorization: `Bearer ${token}` } };
-      const apiResult = await axios.get(
-        `${uri}/posts/get`,// "http://localhost:5000/posts/get",
-        options
-      ); // This line is changed per API call, change sub to API name
-      setPosts(await apiResult.data);
-    })();
-  }, [getAccessTokenSilently]);
->>>>>>> c75fbcbb8dd90eb9e2b4ea367ef2acd27cd0629d
 
   return (
     <Grid direction="row" justify="flex-start" container spacing={2}>
