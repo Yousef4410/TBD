@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import TabNavigator from "./TabNavigator";
+import authLogin from "./authLogin";
 
 const LoginScreen = ({ navigation }) => {
   return (
@@ -11,7 +12,7 @@ const LoginScreen = ({ navigation }) => {
       <Button
         title="Login"
         onPress={() => {
-          navigation.navigate("Marketplace");
+          navigation.navigate("Auth0");
         }}
       />
     </View>
