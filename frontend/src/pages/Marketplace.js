@@ -98,7 +98,7 @@ export function Marketplace() {
 
     setPosts(apiResult.data);
   }
-  if (data === "") initialPosts();
+  if (apiResult === {}) initialPosts();
 
   return (
     <>
