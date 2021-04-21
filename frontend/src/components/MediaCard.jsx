@@ -13,6 +13,15 @@ import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react"
 import config from "../configz"
 
+let uri = "http://localhost:5000"
+console.log(process.env.NODE_ENV)
+if (process.env.NODE_ENV === "development"){
+  uri = "http://localhost:5000"
+}
+else if (process.env.NODE_ENV === "production"){
+  uri = "https://cop4331-app.herokuapp.com"
+}
+console.log("URI:" + uri)
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -65,7 +74,7 @@ export default function MediaCard() {
       console.log(token);
       const options = { headers: { Authorization: `Bearer ${token}` } };
       const apiResult = await axios.get(
-        `${config.SERVER_URI}/posts/get`,
+        `${uri}/posts/get`,// "http://localhost:5000/posts/get",
         options
       ); // This line is changed per API call, change sub to API name
       setPosts(await apiResult.data);
