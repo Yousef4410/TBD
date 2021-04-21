@@ -17,7 +17,15 @@ router.get("/get", async (req, res) => {
 
 // create posts
 router.post("/create", async (req, res) => {
-  let { title, description, price, location, contact, createdBy , image } = req.body;
+  let {
+    title,
+    description,
+    price,
+    location,
+    contact,
+    createdBy,
+    image,
+  } = req.body;
   const { valid, errors } = validatePostInput(title, description, price);
 
   const post = new Post({
@@ -51,9 +59,11 @@ async function getPost(req, res, next) {
   next();
 }
 
-router.get("/getUser/:id",async (req, res) => {
+router.get("/getUser/:id", async (req, res) => {
   try {
-    const postMessages = await Post.find({createdBy : `${req.params.id.replace(':','')}`});
+    const postMessages = await Post.find({
+      createdBy: `${req.params.id.replace(":", "")}`,
+    });
     res.status(200).json(postMessages);
   } catch (err) {
     res.status(400).json({ msg: err.message });
@@ -61,46 +71,50 @@ router.get("/getUser/:id",async (req, res) => {
 });
 
 // delete posts
-router.delete("/del/:id", getPost, async (req, res) => {
+router.delete("/del/:id", async (req, res) => {
   try {
-    await res.post.remove();
+    await Post.findOneAndDelete({ _id: `${req.params.id.replace(":", "")}` });
     res.status(200).json({ message: "Post deleted" });
   } catch (err) {
     res.status(400).json({ msg: err.message });
   }
 });
 
-router.get("/search/:cat/:inp", async (req, res) =>{
+router.get("/search/:cat/:inp", async (req, res) => {
   var queryParam = {};
-  var cat = req.params.cat.replace(':','');
-  var input = req.params.inp.replace(':','');
-  queryParam[cat] = { "$regex": input, "$options": "i" };
+  var cat = req.params.cat.replace(":", "");
+  var input = req.params.inp.replace(":", "");
+  queryParam[cat] = { $regex: input, $options: "i" };
   console.log(queryParam);
-  
+
   try {
     const postMessages = await Post.find(queryParam);
     res.status(200).json(postMessages);
-  } catch (err){
-    res.status(500).json({msg: err.message});
+  } catch (err) {
+    res.status(500).json({ msg: err.message });
   }
-})
+});
 
-router.get("/filter/lth",async (req,res) =>{
-  try{
-    const postMessages = await Post.find({}).sort({price : 1}).collation({locale:"en_US", numericOrdering:true});
+router.get("/filter/lth", async (req, res) => {
+  try {
+    const postMessages = await Post.find({})
+      .sort({ price: 1 })
+      .collation({ locale: "en_US", numericOrdering: true });
     res.status(200).json(postMessages);
-  }catch(err){
-    res.status(400).json({ msg:err.message})
+  } catch (err) {
+    res.status(400).json({ msg: err.message });
   }
-})
+});
 
-router.get("/filter/htl",async (req,res) =>{
-  try{
-    const postMessages = await Post.find({}).sort({price : -1}).collation({locale:"en_US", numericOrdering:true});
+router.get("/filter/htl", async (req, res) => {
+  try {
+    const postMessages = await Post.find({})
+      .sort({ price: -1 })
+      .collation({ locale: "en_US", numericOrdering: true });
     res.status(200).json(postMessages);
-  }catch(err){
-    res.status(400).json({ msg:err.message})
+  } catch (err) {
+    res.status(400).json({ msg: err.message });
   }
-})
+});
 
 module.exports = router;
