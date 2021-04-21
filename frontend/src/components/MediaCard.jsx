@@ -10,17 +10,16 @@ import Typography from "@material-ui/core/Typography";
 import { Grid } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useAuth0 } from "@auth0/auth0-react"
+import { useAuth0 } from "@auth0/auth0-react";
 
-let uri = "http://localhost:5000"
-console.log(process.env.NODE_ENV)
-if (process.env.NODE_ENV === "development"){
-  uri = "http://localhost:5000"
+let uri = "http://localhost:5000";
+console.log(process.env.NODE_ENV);
+if (process.env.NODE_ENV === "development") {
+  uri = "http://localhost:5000";
+} else if (process.env.NODE_ENV === "production") {
+  uri = "https://cop4331-app.herokuapp.com";
 }
-else if (process.env.NODE_ENV === "production"){
-  uri = "https://cop4331-app.herokuapp.com"
-}
-console.log("URI:" + uri)
+console.log("URI:" + uri);
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -61,28 +60,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MediaCard() {
+export default function MediaCard(prop) {
   const classes = useStyles();
-
   const [posts, setPosts] = useState([]);
-  const { getAccessTokenSilently } = useAuth0();
+  // const { getAccessTokenSilently } = useAuth0();
 
-  useEffect(() => {
-    (async () => {
-      const token = await getAccessTokenSilently();
-      console.log(token);
-      const options = { headers: { Authorization: `Bearer ${token}` } };
-      const apiResult = await axios.get(
-        `${uri}/posts/get`,// "http://localhost:5000/posts/get",
-        options
-      ); // This line is changed per API call, change sub to API name
-      setPosts(await apiResult.data);
-    })();
-  }, [getAccessTokenSilently]);
+  // useEffect(() => {
+  //   (async () => {
+  //     const token = await getAccessTokenSilently();
+  //     // console.log(token);
+  //     const options = { headers: { Authorization: `Bearer ${token}` } };
+  //     const apiResult = await axios.get("http://localhost:5000/posts/get", options);
+
+  //     if (prop.data.length){
+  //       setPosts(prop.data)
+  //     }
+  //     else{
+  //       setPosts(apiResult.data)
+  //     }
+
+  //   })();
+  // }, [prop.data, getAccessTokenSilently]);
 
   return (
     <Grid direction="row" justify="flex-start" container spacing={2}>
-      {posts.map((post, key) => {
+      {prop.data.map((post, key) => {
         return (
           <Grid item xs={12} sm={6} md={3} key={key}>
             <Card variant="outlined" className={classes.card}>
