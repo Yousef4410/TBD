@@ -1,1 +1,2 @@
-TradeU is like a marketplace website that enables university students to sell unwanted items.
+TradeU is a webApp built with the MERN stack that will offer exclusive buy/sell opportunities for university students.
+<< Still in development >>
